@@ -91,7 +91,7 @@ const GlassMateHero = () => {
           </div>
           
           <button className="group inline-flex items-center bg-cyan-400 text-black px-8 py-4 font-bold text-sm tracking-wider uppercase hover:bg-cyan-300 transition-all duration-300 hover:scale-105">
-            Let's Build Something Amazing
+            Lets Build Something Amazing
             <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
         </div>
