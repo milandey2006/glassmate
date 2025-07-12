@@ -31,7 +31,7 @@ const GlassMateHero = () => {
           </p>
           
           <h1 className="text-5xl md:text-7xl lg:text-5xl font-black text-white leading-tight mb-12">
-            We Don’t Follow <span className="text-cyan-400">Trends</span>
+            We Dont Follow <span className="text-cyan-400">Trends</span>
             <br />
             <span className="text-white">We Make Them Beg for a Retainer</span>
             <br />
@@ -39,7 +39,7 @@ const GlassMateHero = () => {
           </h1>
           
           <p className="text-gray-400 text-lg font-mono max-w-2xl">
-            GlassMate Media is not just a media agency—we’re your strategic partner in storytelling and growth.
+            GlassMate Media is not just a media agency were your strategic partner in storytelling and growth.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ const GlassMateHero = () => {
           </p>
           
           <h3 className="text-4xl md:text-6xl lg:text-5xl font-black text-white leading-tight mb-12">
-            We Don’t Just  <span className="text-cyan-400">Impress</span>
+            We Don t Just  <span className="text-cyan-400">Impress</span>
             <br />
             We Leave a <span className="text-white">Dent</span>
           </h3>
