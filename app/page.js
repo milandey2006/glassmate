@@ -1,17 +1,19 @@
+import { Analytics } from "@vercel/analytics/next"
 import GlassMateHero from "@/components/About";
 import ResponsiveNavbar from "@/components/Navbar";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import EnhancedHeroDemo from "@/components/ui/hero-highlight";
-import { Container } from "lucide-react";
 import Image from "next/image";
+import TestimonialSection from "@/components/testimonials";
 
 export default function Home() {
   return (
     <div>
-      <ResponsiveNavbar />
+      <Analytics />
+
       <EnhancedHeroDemo>
-        <div className="font-bold text-[50px]">We Don’t Just Create Content — We Create Movements.</div>
+        <div className="font-bold text-[50px]">We Dont Just Create Content — We Create Movements.</div>
       </EnhancedHeroDemo>
       <ContainerScroll>
         <img
@@ -21,6 +23,7 @@ export default function Home() {
         />
       </ContainerScroll>
       <GlassMateHero />
+      <TestimonialSection />
     </div>
   );
 }

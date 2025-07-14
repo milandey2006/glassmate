@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ResponsiveNavbar from "@/components/Navbar";
+import LowtownFooter from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +20,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" webcrx="">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-100 font-mono`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-100 font-poppins`}
       >
+        <ResponsiveNavbar />
         {children}
+        <LowtownFooter />
       </body>
     </html>
   );
