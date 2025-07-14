@@ -15,7 +15,7 @@ const TestimonialSection = () => {
     },
     {
       id: 2,
-      text: "Outstanding service and incredible attention to detail. The team delivered beyond our expectations and truly understood our vision from day one. We couldn't be happier with the results.",
+      text: "Outstanding service and incredible attention to detail. The team delivered beyond our expectations and truly understood our vision from day one. We couldnt be happier with the results.",
       author: "Sarah Johnson",
       position: "CEO, Innovation Labs"
     },
