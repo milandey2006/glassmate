@@ -61,9 +61,9 @@ const ResponsiveNavbar = () => {
               <Image 
                 src={logo} 
                 alt="Glassmate Media Logo"
-                width={140} // Set a specific width
-                height={40} // Set a specific height
-                priority // Add priority to preload the logo as it's LCP
+                width={140}
+                height={40} 
+                priority 
               />
             </motion.a>
 
