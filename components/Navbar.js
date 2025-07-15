@@ -26,7 +26,7 @@ const ResponsiveNavbar = () => {
   const navItems = [
     { name: "Home", icon: Home, href: "#home" },
     { name: "About", icon: User, href: "#about" },
-    { name: "Services", icon: Briefcase, href: "#work" },
+    { name: "Services", icon: Briefcase, href: "/services" },
     { name: "Contact", icon: Mail, href: "#contact" },
     { name: "Portfolio", icon: Settings, href: "#settings" },
   ];
