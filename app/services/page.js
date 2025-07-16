@@ -243,7 +243,7 @@ const page = () => {
               Ready to Transform Your Brand?
             </h3>
             <p className="text-lg text-slate-400 mb-8">
-              Let's discuss how our services can help you achieve your business objectives and stand out in your industry.
+              Lets discuss how our services can help you achieve your business objectives and stand out in your industry.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105">
