@@ -24,8 +24,8 @@ const Footer = () => {
 
   const socialLinks = [
     { href: '#', icon: <FaTwitter /> },
-    { href: '#', icon: <FaInstagram /> },
-    { href: '#', icon: <FaLinkedinIn /> },
+    { href: 'https://www.instagram.com/glassmatemedia/', icon: <FaInstagram /> },
+    { href: 'https://www.linkedin.com/company/glassmatemedia/', icon: <FaLinkedinIn /> },
   ];
 
   return (

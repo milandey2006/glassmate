@@ -2,12 +2,12 @@
 
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // CORRECTED: Use 'framer-motion'
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, User, Briefcase, Mail, Settings } from "lucide-react";
 import Image from "next/image";
 
-// CORRECTED: Import your logo like this. The 'public' directory is the root.
-import logo from '../public/assets/logo.png'; 
+// Make sure your logo is in the 'public/assets/' directory
+import logo from '../public/assets/logo.png';
 
 const ResponsiveNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +18,7 @@ const ResponsiveNavbar = () => {
       setHasScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    // Set initial state
-    handleScroll();
+    handleScroll(); // Set initial state on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -30,14 +29,12 @@ const ResponsiveNavbar = () => {
     { name: "Contact", icon: Mail, href: "#contact" },
     { name: "Portfolio", icon: Settings, href: "#settings" },
   ];
-  
-  // Dynamic classes for navbar styling based on scroll state
+
   const navbarClasses = hasScrolled
     ? "bg-white/80 backdrop-blur-lg border-b border-gray-200/50"
     : "bg-transparent";
   const textColorClasses = hasScrolled ? "text-gray-900" : "text-white";
   const hoverColorClass = hasScrolled ? "hover:text-blue-600" : "hover:text-gray-200";
-
 
   return (
     <>
@@ -49,22 +46,27 @@ const ResponsiveNavbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            
-            {/* Logo */}
-            <motion.a 
-              href="#home"
+
+            {/* Logo and Company Name */}
+            <motion.a
+              href="/"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex-shrink-0"
             >
-              {/* FIXED: Added width, height, and alt props to the Image component */}
-              <Image 
-                src={logo} 
-                alt="Glassmate Media Logo"
-                width={140}
-                height={40} 
-                priority 
-              />
+              <div className="flex items-center space-x-3">
+                <Image
+                  src={logo}
+                  alt="Glassmate Media Logo"
+                  width={70}
+                  height={20}
+                  priority
+                />
+                {/* ADDED: Company name styled to match the navbar's text color */}
+                <span className={`text-2xl font-bold  ${textColorClasses}`}>
+                  Glassmate Media
+                </span>
+              </div>
             </motion.a>
 
             {/* Desktop Navigation */}
