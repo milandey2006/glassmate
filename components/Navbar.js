@@ -23,15 +23,15 @@ const ResponsiveNavbar = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", icon: Home, href: "#home" },
+    { name: "Home", icon: Home, href: "/" },
     { name: "About", icon: User, href: "#about" },
     { name: "Services", icon: Briefcase, href: "/services" },
-    { name: "Contact", icon: Mail, href: "#contact" },
+    { name: "Contact", icon: Mail, href: "/contact" },
     { name: "Portfolio", icon: Settings, href: "#settings" },
   ];
 
   const navbarClasses = hasScrolled
-    ? "bg-white/80 backdrop-blur-lg border-b border-gray-200/50"
+    ? "bg-white/20 backdrop-blur-xl "
     : "bg-transparent";
   const textColorClasses = hasScrolled ? "text-gray-900" : "text-white";
   const hoverColorClass = hasScrolled ? "hover:text-blue-600" : "hover:text-gray-200";
