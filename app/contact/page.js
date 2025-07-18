@@ -46,8 +46,8 @@ export default function ContactComponent() {
               </h1>
               
               <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-                When you book a meeting with us, you'll talk directly to a creative strategist — not a sales rep. 
-                We're here to provide insights, brainstorm solutions, and discuss your brand's growth goals from day one.
+                When you book a meeting with us, youll talk directly to a creative strategist — not a sales rep. 
+                Were here to provide insights, brainstorm solutions, and discuss your brands growth goals from day one.
               </p>
             </div>
             
@@ -153,7 +153,7 @@ export default function ContactComponent() {
                     className="w-4 h-4 mt-1 text-blue-500 bg-slate-900 border-slate-600 rounded focus:ring-blue-500 focus:ring-2"
                   />
                   <label className="text-sm text-gray-400 leading-relaxed">
-                    By clicking "Send Message" you're confirming that you agree with our{' '}
+                    By clicking "Send Message" youre confirming that you agree with our{' '}
                     <a href="#" className="text-blue-400 hover:text-blue-300 underline">
                       Terms and Conditions
                     </a>
@@ -190,7 +190,7 @@ export default function ContactComponent() {
             </div>
           </div>
           
-          <h2 className="text-4xl font-bold mb-16 text-center">Here's what to expect</h2>
+          <h2 className="text-4xl font-bold mb-16 text-center">Heres what to expect</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Step 1 */}
