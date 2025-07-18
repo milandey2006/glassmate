@@ -153,7 +153,7 @@ export default function ContactComponent() {
                     className="w-4 h-4 mt-1 text-blue-500 bg-slate-900 border-slate-600 rounded focus:ring-blue-500 focus:ring-2"
                   />
                   <label className="text-sm text-gray-400 leading-relaxed">
-                    By clicking "Send Message" youre confirming that you agree with our{' '}
+                    By clicking &#34;Send Message&#34; youre confirming that you agree with our{' '}
                     <a href="#" className="text-blue-400 hover:text-blue-300 underline">
                       Terms and Conditions
                     </a>
