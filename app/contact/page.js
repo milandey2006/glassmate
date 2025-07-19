@@ -110,7 +110,7 @@ export default function ContactComponent() {
             </h1>
 
             <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-              When you book a meeting with us, you'll talk directly to a
+              When you book a meeting with us, you&apos;ll talk directly to a
               creative strategist — not a sales rep.
             </p>
 
@@ -144,7 +144,7 @@ export default function ContactComponent() {
               {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="bg-green-500/20 border border-green-500/30 text-green-200 px-4 py-3 rounded-lg">
-                  Message sent successfully! We'll get back to you soon.
+                  Message sent successfully! We&apos;ll get back to you soon.
                 </div>
               )}
               
