@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ResponsiveNavbar from "@/components/Navbar";
 import LowtownFooter from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,10 @@ export default function RootLayout({ children }) {
         <ResponsiveNavbar />
         {children}
         <LowtownFooter />
+        <WhatsAppButton 
+        phoneNumber="+919987703344" // Replace with your actual number
+        message="Hello! I saw your website and I'm interested in your services. Can we chat?"
+      />
       </body>
     </html>
   );
