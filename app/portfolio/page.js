@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, ExternalLink, Calendar, Tag } from "lucide-react";
 
 const PortfolioPage = () => {
+  const [cardOrder, setCardOrder] = useState([0, 1, 2]);
   const [selectedCard, setSelectedCard] = useState(null);
 
   // Sample portfolio data - replace with your actual projects
@@ -76,128 +77,232 @@ const PortfolioPage = () => {
     },
   ];
 
-  const getCardZIndex = (index) => {
-    if (selectedCard === null) {
-      return 10 - index; // Default stacking
+  // Handle card position swapping
+  const handleCardClick = (clickedPosition) => {
+    if (selectedCard !== null) {
+      setSelectedCard(null);
+      return;
     }
-    return selectedCard === index ? 50 : 10 - index;
+
+    const newOrder = [...cardOrder];
+    
+    if (clickedPosition === 0) {
+      // Left card clicked - rotate left
+      newOrder[0] = cardOrder[2]; // right goes to left
+      newOrder[1] = cardOrder[0]; // left goes to center  
+      newOrder[2] = cardOrder[1]; // center goes to right
+    } else if (clickedPosition === 2) {
+      // Right card clicked - rotate right
+      newOrder[0] = cardOrder[1]; // center goes to left
+      newOrder[1] = cardOrder[2]; // right goes to center
+      newOrder[2] = cardOrder[0]; // left goes to right
+    } else {
+      // Middle card clicked - just show selection state
+      setSelectedCard(1);
+      return;
+    }
+    
+    setCardOrder(newOrder);
   };
 
-  const getCardPosition = (index) => {
-    if (index >= 3) return {}; // Only animate first 3 cards
+  const getCardZIndex = (position) => {
+    if (selectedCard === 1) {
+      return position === 1 ? 50 : 10;
+    }
+    
+    // Middle position always has highest z-index
+    if (position === 1) return 30; // Middle card on top
+    if (position === 0) return 20; // Left card
+    if (position === 2) return 25; // Right card
+    return 10;
+  };
 
-    if (selectedCard === null) {
-      // Default stacked position
-      return {
-        x: index * 20,
-        y: index * 30,
-        rotate: index * 2 - 2,
-      };
-    } else if (selectedCard === index) {
-      // Selected card comes to front
+  // Responsive card positioning
+  const getCardPosition = (position) => {
+    if (selectedCard === 1 && position === 1) {
+      // Selected middle card
       return {
         x: 0,
-        y: 0,
+        y: -20,
         rotate: 0,
-        scale: 1.05,
+        scale: 1.1,
       };
-    } else {
-      // Other cards move back
-      return {
-        x: index * 25,
-        y: index * 35,
-        rotate: index * 3 - 3,
-        scale: 0.95,
-      };
+    } else if (selectedCard === 1) {
+      // Other cards when middle is selected
+      const backPositions = [
+        { x: -120, y: 60, rotate: -12, scale: 0.9 }, // Left
+        { x: 0, y: 40, rotate: 0, scale: 0.9 },      // Middle
+        { x: 120, y: 60, rotate: 12, scale: 0.9 }    // Right
+      ];
+      return backPositions[position];
     }
+
+    // Responsive default positions
+    // These values will be adjusted by CSS classes
+    const positions = [
+      { x: 0, y: 0, rotate: 0 }, // Left card
+      { x: 0, y: 0, rotate: 0 }, // Middle card - on top
+      { x: 0, y: 0, rotate: 0 }  // Right card
+    ];
+    return positions[position];
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       {/* Header */}
-      <div className="container mx-auto px-6 pt-20 pb-12">
+      <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-8 sm:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Portfolio
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
             Showcasing our creative excellence in digital media production and
             marketing campaigns
           </p>
         </motion.div>
 
-        {/* Interactive Cards Section */}
-        <div className="mb-20">
-          <div className="relative max-w-4xl mx-auto">
-            {/* First 3 cards with special animation */}
+        {/* Interactive Cards Section - Desktop Only */}
+        <div className="hidden lg:block mb-20">
+          <div className="relative max-w-5xl mx-auto">
             {/* Featured Projects Stacked Section */}
-            <div className="relative flex justify-center items-center h-[42rem]">
-              {portfolioItems.slice(0, 3).map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  className="absolute w-[20rem] h-[34rem] cursor-pointer" // Portrait size
-                  style={{ zIndex: getCardZIndex(index) }}
-                  animate={{
-                    ...getCardPosition(index),
-                    // More spacing between cards
-                    x:
-                      selectedCard === null
-                        ? index * 80 - 80
-                        : selectedCard === index
-                          ? 0
-                          : (index - selectedCard) * 100,
-                    y:
-                      selectedCard === null
-                        ? index * 30
-                        : selectedCard === index
-                          ? 0
-                          : 40,
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 28 }}
-                  onClick={() =>
-                    setSelectedCard(selectedCard === index ? null : index)
-                  }
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 shadow-2xl">
-                    {/* Portrait Graphic / Thumbnail */}
-                    <div className="relative w-full h-4/5 bg-gray-700">
-                      <img
-                        src={item.thumbnail}
-                        alt={item.title}
-                        className="object-cover w-full h-full"
-                      />
-                      <div className="absolute top-4 left-4 bg-black/50 rounded px-3 py-1 text-sm">
-                        {item.date}
+            <div className="relative flex justify-center items-center h-[45rem] overflow-visible">
+              {[0, 1, 2].map((position) => {
+                const itemIndex = cardOrder[position];
+                const item = portfolioItems[itemIndex];
+                
+                return (
+                  <motion.div
+                    key={`${item.id}-${position}`}
+                    className={`absolute cursor-pointer
+                      ${position === 0 ? 'lg:w-[20rem] lg:h-[32rem] lg:-translate-x-[120px] lg:translate-y-[40px] lg:-rotate-[8deg]' : ''}
+                      ${position === 1 ? 'lg:w-[22rem] lg:h-[36rem] lg:translate-x-0 lg:translate-y-0 lg:rotate-0' : ''}
+                      ${position === 2 ? 'lg:w-[20rem] lg:h-[32rem] lg:translate-x-[120px] lg:translate-y-[40px] lg:rotate-[8deg]' : ''}
+                    `}
+                    style={{ zIndex: getCardZIndex(position) }}
+                    animate={getCardPosition(position)}
+                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                    onClick={() => handleCardClick(position)}
+                    whileHover={{ scale: selectedCard === null ? 1.02 : 1.05 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-800 border border-gray-700 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+                      {/* Portrait Graphic / Thumbnail */}
+                      <div className="relative w-full h-4/5 bg-gray-700 overflow-hidden">
+                        <img
+                          src={item.thumbnail}
+                          alt={item.title}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1 text-sm border border-gray-600">
+                          <Calendar className="w-3 h-3 inline mr-1" />
+                          {item.date}
+                        </div>
+                        
+                        {/* Play button overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
+                            <Play className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Card Info */}
-                    <div className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">
-                          {item.category}
-                        </span>
-                        <ExternalLink className="w-4 h-4 text-gray-400" />
+                      {/* Card Info */}
+                      <div className="p-4 lg:p-6 h-1/5 flex flex-col justify-center">
+                        <div className="flex items-center justify-between mb-2 lg:mb-3">
+                          <span className="text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 lg:px-3 py-1 rounded-full font-medium">
+                            {item.category}
+                          </span>
+                          <ExternalLink className="w-4 lg:w-5 h-4 lg:h-5 text-gray-400 hover:text-white transition-colors" />
+                        </div>
+                        <h3 className="text-lg lg:text-xl font-bold text-white leading-tight">
+                          {item.title}
+                        </h3>
                       </div>
-                      <h3 className="text-lg font-bold mb-2 text-white">
-                        {item.title}
-                      </h3>
+
+                      {/* Hover overlay with description */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 lg:p-6"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                      >
+                        <p className="text-gray-200 text-sm mb-3 leading-relaxed">
+                          {item.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {item.tags.slice(0, 3).map((tag, tagIndex) => (
+                            <span
+                              key={tagIndex}
+                              className="text-xs bg-white/20 text-white px-2 py-1 rounded-md backdrop-blur-sm"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Regular Grid for Remaining Projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Mobile Featured Cards - Simple Carousel */}
+        <div className="lg:hidden mb-12">
+          <div className="flex overflow-x-auto gap-4 pb-4 px-4 snap-x snap-mandatory scrollbar-hide">
+            {portfolioItems.slice(0, 3).map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="flex-shrink-0 w-72 sm:w-80 snap-center"
+              >
+                <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 h-96">
+                  {/* Mobile card content */}
+                  <div className="relative h-3/4 bg-gray-700 overflow-hidden">
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="object-cover w-full h-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1 text-sm">
+                      <Calendar className="w-3 h-3 inline mr-1" />
+                      {item.date}
+                    </div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 border border-white/30">
+                        <Play className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 h-1/4 flex flex-col justify-center">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full font-medium">
+                        {item.category}
+                      </span>
+                      <ExternalLink className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white leading-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Responsive Grid for Remaining Projects */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
           {portfolioItems.slice(3).map((item, index) => (
             <motion.div
               key={item.id}
@@ -208,9 +313,9 @@ const PortfolioPage = () => {
             >
               <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105">
                 {/* Video thumbnail */}
-                <div className="relative h-48 bg-gray-700 overflow-hidden">
+                <div className="relative h-40 sm:h-48 bg-gray-700 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
+                    <Play className="w-8 sm:w-12 h-8 sm:h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="absolute top-2 right-2 bg-black bg-opacity-50 rounded px-2 py-1">
                     <Calendar className="w-3 h-3 inline mr-1" />
@@ -219,7 +324,7 @@ const PortfolioPage = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs bg-purple-600 text-white px-3 py-1 rounded-full">
                       {item.category}
@@ -227,7 +332,7 @@ const PortfolioPage = () => {
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                   </div>
 
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
                     {item.title}
                   </h3>
 
@@ -258,19 +363,30 @@ const PortfolioPage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-20"
+          className="text-center mt-12 sm:mt-20 px-4"
         >
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
             Ready to Start Your Project?
           </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Let&apos;s collaborate to create something amazing for your brand
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
             Get In Touch
           </button>
         </motion.div>
       </div>
+
+      {/* Custom CSS for hiding scrollbars */}
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 };
