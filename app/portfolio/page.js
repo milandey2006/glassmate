@@ -264,7 +264,7 @@ const PortfolioPage = () => {
             Ready to Start Your Project?
           </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's collaborate to create something amazing for your brand
+            Let&apos;s collaborate to create something amazing for your brand
           </p>
           <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
             Get In Touch
