@@ -24,7 +24,7 @@ const PortfolioPage = () => {
       relatedVideos: [
         { id: "dQw4w9WgXcQ", title: "Main Campaign Video" },
         { id: "ScMzIvxBSi4", title: "Behind the Scenes" },
-        { id: "L_jWHffIx5E", title: "Director's Cut" },
+        { id: "L_jWHffIx5E", title: "Directors Cut" },
         { id: "fJ9rUzIMcZQ", title: "Extended Version" },
         { id: "QB7ACr7pUuE", title: "Making Of" },
         { id: "ZbZSe6N_BXs", title: "Client Testimonial" }
