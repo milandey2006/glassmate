@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, ExternalLink, Calendar, Tag } from "lucide-react";
 
 const PortfolioPage = () => {
   const [cardOrder, setCardOrder] = useState([0, 1, 2]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  // Sample portfolio data - replace with your actual projects
+  // Sample portfolio data with YouTube video IDs
   const portfolioItems = [
     {
       id: 1,
@@ -16,10 +18,17 @@ const PortfolioPage = () => {
       category: "Video Production",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
-      description:
-        "Creative brand campaign showcasing innovative storytelling and visual effects.",
+      youtubeId: "dQw4w9WgXcQ", 
+      description: "Creative brand campaign showcasing innovative storytelling and visual effects.",
       tags: ["Branding", "Motion Graphics", "Commercial"],
+      relatedVideos: [
+        { id: "dQw4w9WgXcQ", title: "Main Campaign Video" },
+        { id: "ScMzIvxBSi4", title: "Behind the Scenes" },
+        { id: "L_jWHffIx5E", title: "Director's Cut" },
+        { id: "fJ9rUzIMcZQ", title: "Extended Version" },
+        { id: "QB7ACr7pUuE", title: "Making Of" },
+        { id: "ZbZSe6N_BXs", title: "Client Testimonial" }
+      ]
     },
     {
       id: 2,
@@ -27,10 +36,17 @@ const PortfolioPage = () => {
       category: "Digital Marketing",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
-      description:
-        "Comprehensive digital campaign for product launch across multiple platforms.",
+      youtubeId: "jNQXAC9IVRw",
+      description: "Comprehensive digital campaign for product launch across multiple platforms.",
       tags: ["Social Media", "Content Creation", "Strategy"],
+      relatedVideos: [
+        { id: "jNQXAC9IVRw", title: "Launch Teaser" },
+        { id: "dQw4w9WgXcQ", title: "Product Demo" },
+        { id: "ScMzIvxBSi4", title: "Social Media Ad 1" },
+        { id: "L_jWHffIx5E", title: "Social Media Ad 2" },
+        { id: "fJ9rUzIMcZQ", title: "Influencer Collaboration" },
+        { id: "QB7ACr7pUuE", title: "Campaign Results" }
+      ]
     },
     {
       id: 3,
@@ -38,10 +54,17 @@ const PortfolioPage = () => {
       category: "Video Production",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
-      description:
-        "Documentary-style corporate video highlighting company culture and values.",
+      youtubeId: "9bZkp7q19f0",
+      description: "Documentary-style corporate video highlighting company culture and values.",
       tags: ["Documentary", "Corporate", "Storytelling"],
+      relatedVideos: [
+        { id: "9bZkp7q19f0", title: "Full Documentary" },
+        { id: "dQw4w9WgXcQ", title: "Employee Interviews" },
+        { id: "ScMzIvxBSi4", title: "Company Culture" },
+        { id: "L_jWHffIx5E", title: "Office Tour" },
+        { id: "fJ9rUzIMcZQ", title: "Leadership Stories" },
+        { id: "QB7ACr7pUuE", title: "Vision & Mission" }
+      ]
     },
     {
       id: 4,
@@ -49,10 +72,17 @@ const PortfolioPage = () => {
       category: "Content Creation",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
-      description:
-        "Engaging social media content series with high engagement rates.",
+      youtubeId: "kJQP7kiw5Fk",
+      description: "Engaging social media content series with high engagement rates.",
       tags: ["Social Media", "Animation", "Digital"],
+      relatedVideos: [
+        { id: "kJQP7kiw5Fk", title: "Campaign Overview" },
+        { id: "dQw4w9WgXcQ", title: "Instagram Stories" },
+        { id: "ScMzIvxBSi4", title: "TikTok Content" },
+        { id: "L_jWHffIx5E", title: "Facebook Ads" },
+        { id: "fJ9rUzIMcZQ", title: "YouTube Shorts" },
+        { id: "QB7ACr7pUuE", title: "LinkedIn Posts" }
+      ]
     },
     {
       id: 5,
@@ -60,9 +90,17 @@ const PortfolioPage = () => {
       category: "Video Production",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
+      youtubeId: "lDK9QqIzhwk",
       description: "Professional event documentation with cinematic quality.",
       tags: ["Events", "Live Coverage", "Editing"],
+      relatedVideos: [
+        { id: "lDK9QqIzhwk", title: "Event Highlights" },
+        { id: "dQw4w9WgXcQ", title: "Opening Ceremony" },
+        { id: "ScMzIvxBSi4", title: "Keynote Speeches" },
+        { id: "L_jWHffIx5E", title: "Panel Discussions" },
+        { id: "fJ9rUzIMcZQ", title: "Networking Sessions" },
+        { id: "QB7ACr7pUuE", title: "Closing Remarks" }
+      ]
     },
     {
       id: 6,
@@ -70,12 +108,155 @@ const PortfolioPage = () => {
       category: "Animation",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      videoUrl: "#",
-      description:
-        "Educational video series with custom animations and graphics.",
+      youtubeId: "y8Kyi0WNg40",
+      description: "Educational video series with custom animations and graphics.",
       tags: ["Education", "Animation", "Graphics"],
+      relatedVideos: [
+        { id: "y8Kyi0WNg40", title: "Series Introduction" },
+        { id: "dQw4w9WgXcQ", title: "Episode 1: Basics" },
+        { id: "ScMzIvxBSi4", title: "Episode 2: Advanced" },
+        { id: "L_jWHffIx5E", title: "Episode 3: Expert Tips" },
+        { id: "fJ9rUzIMcZQ", title: "Episode 4: Case Studies" },
+        { id: "QB7ACr7pUuE", title: "Episode 5: Conclusion" }
+      ]
     },
   ];
+
+  // YouTube Embed Component
+  const YouTubeEmbed = ({ videoId, title }) => {
+    return (
+      <div className="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg">
+        <iframe
+          className="absolute top-0 left-0 w-full h-full"
+          src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+          title={title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    );
+  };
+
+  // Video Modal Component
+  const VideoModal = ({ project, isOpen, onClose }) => {
+    if (!project) return null;
+
+    return (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={onClose}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-gray-900 rounded-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto border border-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 z-10 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Modal Header */}
+              <div className="p-6 border-b border-gray-700">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-sm font-medium text-white">
+                    {project.category}
+                  </span>
+                  <span className="text-gray-400 text-sm">{project.date}</span>
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-3">{project.title}</h2>
+                <p className="text-gray-300 text-lg">{project.description}</p>
+              </div>
+
+              {/* Video Grid */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-6">Project Videos</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {project.relatedVideos?.map((video, index) => (
+                    <motion.div
+                      key={video.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group"
+                    >
+                      <YouTubeEmbed videoId={video.id} title={video.title} />
+                      <h4 className="text-white font-medium mt-3 group-hover:text-blue-400 transition-colors">
+                        {video.title}
+                      </h4>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Project Tags */}
+                <div className="mt-8">
+                  <h4 className="text-lg font-semibold text-white mb-3">Tags</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-gray-700 text-gray-300 rounded-md text-sm hover:bg-gray-600 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+
+  // Modal control functions
+  const openModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+    document.body.style.overflow = "auto";
+  };
+
+  // Handle escape key
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "auto"; // Cleanup on unmount
+    };
+  }, [isModalOpen]);
 
   // Handle card position swapping
   const handleCardClick = (clickedPosition) => {
@@ -97,8 +278,10 @@ const PortfolioPage = () => {
       newOrder[1] = cardOrder[2]; // right goes to center
       newOrder[2] = cardOrder[0]; // left goes to right
     } else {
-      // Middle card clicked - just show selection state
-      setSelectedCard(1);
+      // Middle card clicked - open modal
+      const itemIndex = cardOrder[1];
+      const item = portfolioItems[itemIndex];
+      openModal(item);
       return;
     }
     
@@ -138,7 +321,6 @@ const PortfolioPage = () => {
     }
 
     // Responsive default positions
-    // These values will be adjusted by CSS classes
     const positions = [
       { x: 0, y: 0, rotate: 0 }, // Left card
       { x: 0, y: 0, rotate: 0 }, // Middle card - on top
@@ -261,7 +443,8 @@ const PortfolioPage = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex-shrink-0 w-72 sm:w-80 snap-center"
+                className="flex-shrink-0 w-72 sm:w-80 snap-center cursor-pointer"
+                onClick={() => openModal(item)}
               >
                 <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 h-96">
                   {/* Mobile card content */}
@@ -309,11 +492,18 @@ const PortfolioPage = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
+              className="group cursor-pointer"
+              onClick={() => openModal(item)}
             >
               <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105">
                 {/* Video thumbnail */}
                 <div className="relative h-40 sm:h-48 bg-gray-700 overflow-hidden">
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Play className="w-8 sm:w-12 h-8 sm:h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
                   </div>
@@ -376,6 +566,13 @@ const PortfolioPage = () => {
           </button>
         </motion.div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal 
+        project={selectedProject} 
+        isOpen={isModalOpen} 
+        onClose={closeModal} 
+      />
 
       {/* Custom CSS for hiding scrollbars */}
       <style jsx>{`
