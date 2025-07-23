@@ -18,13 +18,13 @@ const PortfolioPage = () => {
       category: "Video Production",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      youtubeId: "dQw4w9WgXcQ", 
+      youtubeId: "dQw4w9WgXcQ",
       description: "Creative brand campaign showcasing innovative storytelling and visual effects.",
       tags: ["Branding", "Motion Graphics", "Commercial"],
       relatedVideos: [
         { id: "dQw4w9WgXcQ", title: "Main Campaign Video" },
         { id: "ScMzIvxBSi4", title: "Behind the Scenes" },
-        { id: "L_jWHffIx5E", title: "Directors Cut" },
+        { id: "L_jWHffIx5E", title: "Director's Cut" },
         { id: "fJ9rUzIMcZQ", title: "Extended Version" },
         { id: "QB7ACr7pUuE", title: "Making Of" },
         { id: "ZbZSe6N_BXs", title: "Client Testimonial" }
@@ -254,7 +254,7 @@ const PortfolioPage = () => {
 
     return () => {
       window.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "auto"; // Cleanup on unmount
+      document.body.style.overflow = "auto";
     };
   }, [isModalOpen]);
 
@@ -278,10 +278,8 @@ const PortfolioPage = () => {
       newOrder[1] = cardOrder[2]; // right goes to center
       newOrder[2] = cardOrder[0]; // left goes to right
     } else {
-      // Middle card clicked - open modal
-      const itemIndex = cardOrder[1];
-      const item = portfolioItems[itemIndex];
-      openModal(item);
+      // Middle card clicked - just show selection state
+      setSelectedCard(1);
       return;
     }
     
@@ -348,11 +346,10 @@ const PortfolioPage = () => {
           </p>
         </motion.div>
 
-        {/* Interactive Cards Section - Desktop Only */}
-        <div className="hidden lg:block mb-20">
-          <div className="relative max-w-5xl mx-auto">
-            {/* Featured Projects Stacked Section */}
-            <div className="relative flex justify-center items-center h-[45rem] overflow-visible">
+        {/* Responsive Overlapping Cards - All Screen Sizes with Proper Padding */}
+        <div className="mb-20 px-4 sm:px-8">
+          <div className="relative max-w-6xl mx-auto">
+            <div className="relative flex justify-center items-center h-[30rem] sm:h-[35rem] lg:h-[45rem] overflow-visible">
               {[0, 1, 2].map((position) => {
                 const itemIndex = cardOrder[position];
                 const item = portfolioItems[itemIndex];
@@ -361,9 +358,12 @@ const PortfolioPage = () => {
                   <motion.div
                     key={`${item.id}-${position}`}
                     className={`absolute cursor-pointer
-                      ${position === 0 ? 'lg:w-[20rem] lg:h-[32rem] lg:-translate-x-[120px] lg:translate-y-[40px] lg:-rotate-[8deg]' : ''}
-                      ${position === 1 ? 'lg:w-[22rem] lg:h-[36rem] lg:translate-x-0 lg:translate-y-0 lg:rotate-0' : ''}
-                      ${position === 2 ? 'lg:w-[20rem] lg:h-[32rem] lg:translate-x-[120px] lg:translate-y-[40px] lg:rotate-[8deg]' : ''}
+                      ${position === 0 ? 
+                        'w-[14rem] h-[22rem] sm:w-[16rem] sm:h-[24rem] md:w-[18rem] md:h-[28rem] lg:w-[20rem] lg:h-[32rem] -translate-x-[70px] sm:-translate-x-[80px] md:-translate-x-[100px] lg:-translate-x-[120px] translate-y-[20px] sm:translate-y-[25px] md:translate-y-[30px] lg:translate-y-[40px] -rotate-[6deg] sm:-rotate-[7deg] lg:-rotate-[8deg]' : ''}
+                      ${position === 1 ? 
+                        'w-[16rem] h-[26rem] sm:w-[18rem] sm:h-[28rem] md:w-[20rem] md:h-[32rem] lg:w-[22rem] lg:h-[36rem] translate-x-0 translate-y-0 rotate-0' : ''}
+                      ${position === 2 ? 
+                        'w-[14rem] h-[22rem] sm:w-[16rem] sm:h-[24rem] md:w-[18rem] md:h-[28rem] lg:w-[20rem] lg:h-[32rem] translate-x-[70px] sm:translate-x-[80px] md:translate-x-[100px] lg:translate-x-[120px] translate-y-[20px] sm:translate-y-[25px] md:translate-y-[30px] lg:translate-y-[40px] rotate-[6deg] sm:rotate-[7deg] lg:rotate-[8deg]' : ''}
                     `}
                     style={{ zIndex: getCardZIndex(position) }}
                     animate={getCardPosition(position)}
@@ -388,34 +388,34 @@ const PortfolioPage = () => {
                         {/* Play button overlay */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                           <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
-                            <Play className="w-8 h-8 text-white" />
+                            <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                           </div>
                         </div>
                       </div>
 
                       {/* Card Info */}
-                      <div className="p-4 lg:p-6 h-1/5 flex flex-col justify-center">
-                        <div className="flex items-center justify-between mb-2 lg:mb-3">
+                      <div className="p-3 sm:p-4 lg:p-6 h-1/5 flex flex-col justify-center">
+                        <div className="flex items-center justify-between mb-1 sm:mb-2 lg:mb-3">
                           <span className="text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 lg:px-3 py-1 rounded-full font-medium">
                             {item.category}
                           </span>
-                          <ExternalLink className="w-4 lg:w-5 h-4 lg:h-5 text-gray-400 hover:text-white transition-colors" />
+                          <ExternalLink className="w-3 sm:w-4 lg:w-5 h-3 sm:h-4 lg:h-5 text-gray-400 hover:text-white transition-colors" />
                         </div>
-                        <h3 className="text-lg lg:text-xl font-bold text-white leading-tight">
+                        <h3 className="text-sm sm:text-base lg:text-xl font-bold text-white leading-tight">
                           {item.title}
                         </h3>
                       </div>
 
                       {/* Hover overlay with description */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 lg:p-6"
+                        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 sm:p-4 lg:p-6"
                         initial={{ opacity: 0 }}
                         whileHover={{ opacity: 1 }}
                       >
-                        <p className="text-gray-200 text-sm mb-3 leading-relaxed">
+                        <p className="text-gray-200 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
                           {item.description}
                         </p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
                           {item.tags.slice(0, 3).map((tag, tagIndex) => (
                             <span
                               key={tagIndex}
@@ -431,56 +431,6 @@ const PortfolioPage = () => {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* Mobile Featured Cards - Simple Carousel */}
-        <div className="lg:hidden mb-12">
-          <div className="flex overflow-x-auto gap-4 pb-4 px-4 snap-x snap-mandatory scrollbar-hide">
-            {portfolioItems.slice(0, 3).map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex-shrink-0 w-72 sm:w-80 snap-center cursor-pointer"
-                onClick={() => openModal(item)}
-              >
-                <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 h-96">
-                  {/* Mobile card content */}
-                  <div className="relative h-3/4 bg-gray-700 overflow-hidden">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.title}
-                      className="object-cover w-full h-full"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1 text-sm">
-                      <Calendar className="w-3 h-3 inline mr-1" />
-                      {item.date}
-                    </div>
-                    
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 border border-white/30">
-                        <Play className="w-6 h-6 text-white" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-4 h-1/4 flex flex-col justify-center">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full font-medium">
-                        {item.category}
-                      </span>
-                      <ExternalLink className="w-4 h-4 text-gray-400" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white leading-tight">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
 
