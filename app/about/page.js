@@ -22,7 +22,7 @@ const AboutUs = () => {
             About Us
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We're a creative digital agency passionate about transforming ideas into extraordinary experiences
+            We&apsos;re a creative digital agency passionate about transforming ideas into extraordinary experiences
           </p>
         </motion.div>
 
@@ -38,10 +38,10 @@ const AboutUs = () => {
               Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Story</span>
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Founded with a vision to bridge creativity and technology, we've been crafting digital solutions that make a real difference. Our journey began with a simple belief: every brand has a unique story worth telling.
+              Founded with a vision to bridge creativity and technology, we&apsos;ve been crafting digital solutions that make a real difference. Our journey began with a simple belief: every brand has a unique story worth telling.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Today, we're a team of passionate creators, strategists, and innovators dedicated to delivering exceptional results for our clients.
+              Today, we&apsos;re a team of passionate creators, strategists, and innovators dedicated to delivering exceptional results for our clients.
             </p>
           </motion.div>
 
@@ -150,7 +150,7 @@ const AboutUs = () => {
               Ready to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Work Together</span>?
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's create something amazing together. Your story deserves to be told with passion and creativity.
+              Let&apsos;s create something amazing together. Your story deserves to be told with passion and creativity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
