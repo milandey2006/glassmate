@@ -22,7 +22,7 @@ const AboutUs = () => {
             About Us
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We&apsos;re a creative digital agency passionate about transforming ideas into extraordinary experiences
+            We&apos;re a creative digital agency passionate about transforming ideas into extraordinary experiences
           </p>
         </motion.div>
 
