@@ -107,7 +107,7 @@ const AboutUs = () => {
                     Who We Are
                   </h2>
                   <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
-                    GlassMate Media is a Mumbai-based media agency that transforms ideas into impactful visuals and strategy-driven content. Built on lived experience, it's a team-led extension of everything the founder learned the hard way.
+                    GlassMate Media is a Mumbai-based media agency that transforms ideas into impactful visuals and strategy-driven content. Built on lived experience, it&apos;s a team-led extension of everything the founder learned the hard way.
                   </p>
                 </div>
               </div>
@@ -122,14 +122,14 @@ const AboutUs = () => {
                   <div className="absolute bottom-6 left-6 w-16 h-16 bg-terracotta-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#C17B5A', opacity: hoveredSection === 'why' ? '0.1' : '0.05'}}></div>
                   
                   <h2 className="text-2xl font-bold mb-6 text-white group-hover:text-terracotta-200 transition-colors duration-300" style={{color: hoveredSection === 'why' ? '#D19B7C' : 'white'}}>
-                    Why 'GlassMate'?
+                    Why &apos;GlassMate'?
                   </h2>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                       Because great media should be like glass — clear, reflective, and real.
                     </p>
                     <p className="text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                      And every brand deserves a mate that's transparent, collaborative, and rooted in purpose.
+                      And every brand deserves a mate that&apos;s transparent, collaborative, and rooted in purpose.
                     </p>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ const AboutUs = () => {
                     What We Do
                   </h2>
                   <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
-                    GlassMate Media delivers full-spectrum creative and digital solutions. From powerful video products to social media that speaks your brand language, every service is crafted with intent. We help founders and leaders build personal brands, consult on media strategy, drive digital marketing, and develop websites that convert. Whether it's crushing it on YouTube or scaling an online presence, GlassMate partners with you to make content that works.
+                    GlassMate Media delivers full-spectrum creative and digital solutions. From powerful video products to social media that speaks your brand language, every service is crafted with intent. We help founders and leaders build personal brands, consult on media strategy, drive digital marketing, and develop websites that convert. Whether it&apos;s crushing it on YouTube or scaling an online presence, GlassMate partners with you to make content that works.
                   </p>
                 </div>
               </div>
@@ -224,7 +224,7 @@ const AboutUs = () => {
                     <div className="pt-6 border-t border-slate-600/30">
                       <p className="text-xl text-white">
                         <strong>
-                          Today, we continue this journey with every client,<br></br> team member, and story we're honored to tell.
+                          Today, we continue this journey with every client,<br></br> team member, and story we&apos;re honored to tell.
                         </strong>
                       </p>
                     </div>
