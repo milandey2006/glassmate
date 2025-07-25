@@ -122,7 +122,7 @@ const AboutUs = () => {
                   <div className="absolute bottom-6 left-6 w-16 h-16 bg-terracotta-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#C17B5A', opacity: hoveredSection === 'why' ? '0.1' : '0.05'}}></div>
                   
                   <h2 className="text-2xl font-bold mb-6 text-white group-hover:text-terracotta-200 transition-colors duration-300" style={{color: hoveredSection === 'why' ? '#D19B7C' : 'white'}}>
-                    Why &apos;GlassMate'?
+                    Why &apos;GlassMate&apos;?
                   </h2>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
