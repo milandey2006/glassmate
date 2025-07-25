@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 import { Users, Target, Award, Lightbulb, Rocket, Star } from 'lucide-react';
 import Image from 'next/image';
 import banner from '@/public/about/about.png';
+import mobileBanner from '@/public/about/about_res.png'; // Add your mobile banner here
 
 const AboutUs = () => {
-
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
   const [hoveredSection, setHoveredSection] = useState(null);
@@ -27,12 +27,6 @@ const AboutUs = () => {
     "Digital-first Brands"
   ];
 
-  const keyPrinciples = [
-    "Here, storytelling meets strategy.",
-    "Creativity meets accountability.", 
-    "And execution meets empathy.",
-    "The journey started solo."
-  ];
   return (
     <>
       <div className="mt-30">
@@ -43,8 +37,14 @@ const AboutUs = () => {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h1 className="text-4xl font-bold text-white">The Founder’s Journey
-            </h1>
+            <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="inline-flex items-center space-x-3 bg-slate-700/15 px-8 py-4 rounded-full border border-slate-600/25 mb-8 backdrop-blur-sm hover:bg-slate-600/20 transition-all duration-300">
+                <div className="w-3 h-3 bg-sage-500 rounded-full" style={{backgroundColor: '#6B8E73'}}></div>
+                <span className="text-slate-200 text-base font-medium tracking-wide">
+                  The Founder&apos;s Journey
+                </span>
+              </div>
+            </div>
             <p className="text-lg text-gray-600 w-95 mx-auto">
               It started with breakfast and clarity... <br></br>
               By Sudarshan (Founder – GlassMate Media)
@@ -53,19 +53,37 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* Responsive Banner Section */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <Image
-          src={banner}
-          alt='about-us banner'
-        />
+        className="flex justify-center max-w-8xl mx-auto sm:px-6 lg:px-8 pt-5"
+      >
+        {/* Desktop/Tablet Banner - Hidden on mobile */}
+        <div className="hidden md:block w-full">
+          <Image
+            src={banner}
+            alt='about-us banner'
+            className="w-full h-auto object-cover"
+            priority
+          />
+        </div>
+        
+        {/* Mobile Banner - Only visible on mobile */}
+        <div className="block md:hidden w-full px-4">
+          <Image
+            src={mobileBanner} // Replace with your mobile banner path
+            alt='about-us banner mobile'
+            className="w-full h-auto object-cover rounded-lg"
+            priority
+          />
+        </div>
       </motion.div>
 
-   <div className="min-h-screen bg-[#0f172a] text-white overflow-hidden">
-      <div className="container mx-auto px-6 py-16 relative">
+      {/* Rest of your existing code remains the same */}
+      <div className="min-h-screen bg-[#0f172a] text-white overflow-hidden">
+        <div className="container mx-auto px-6 py-8 relative">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-10 right-20 w-64 h-64 bg-slate-600/5 rounded-full blur-2xl"></div>
@@ -235,28 +253,9 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-    </div>
-
-    
-  
+      </div>
     </>
   );
 };
 
 export default AboutUs;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
