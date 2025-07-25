@@ -52,7 +52,7 @@ const TestimonialSection = () => {
       <div className="">
         <AnimatedTestimonials testimonials={testimonials} />
       </div>
-      //{" "}
+      {" "}
     </div>
     </section>
   );
