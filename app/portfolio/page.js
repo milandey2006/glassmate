@@ -1,126 +1,258 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, ExternalLink, Calendar, Tag } from "lucide-react";
+import { Play, Heart, MessageCircle, Share, Bookmark, MoreHorizontal, ChevronLeft, ChevronRight, Calendar, Tag, ExternalLink } from "lucide-react";
 
-const PortfolioPage = () => {
-  const [cardOrder, setCardOrder] = useState([0, 1, 2]);
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ResponsivePortfolioGrid = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentSlides, setCurrentSlides] = useState({
+    square: 0,
+    portrait_video: 0,
+    portrait_photo: 0
+  });
 
-  // Sample portfolio data with YouTube video IDs
-  const portfolioItems = [
+  // Portfolio items separated by type
+  const imageItems = [
     {
       id: 1,
-      title: "Brand Campaign Video",
-      category: "Video Production",
-      date: "2024",
-      thumbnail: "/api/placeholder/400/300",
-      youtubeId: "dQw4w9WgXcQ",
-      description: "Creative brand campaign showcasing innovative storytelling and visual effects.",
-      tags: ["Branding", "Motion Graphics", "Commercial"],
-      relatedVideos: [
-        { id: "dQw4w9WgXcQ", title: "Main Campaign Video" },
-        { id: "ScMzIvxBSi4", title: "Behind the Scenes" },
-        { id: "L_jWHffIx5E", title: "Director's Cut" },
-        { id: "fJ9rUzIMcZQ", title: "Extended Version" },
-        { id: "QB7ACr7pUuE", title: "Making Of" },
-        { id: "ZbZSe6N_BXs", title: "Client Testimonial" }
-      ]
-    },
-    {
-      id: 2,
-      title: "Product Launch Campaign",
-      category: "Digital Marketing",
-      date: "2024",
-      thumbnail: "/api/placeholder/400/300",
-      youtubeId: "jNQXAC9IVRw",
-      description: "Comprehensive digital campaign for product launch across multiple platforms.",
-      tags: ["Social Media", "Content Creation", "Strategy"],
-      relatedVideos: [
-        { id: "jNQXAC9IVRw", title: "Launch Teaser" },
-        { id: "dQw4w9WgXcQ", title: "Product Demo" },
-        { id: "ScMzIvxBSi4", title: "Social Media Ad 1" },
-        { id: "L_jWHffIx5E", title: "Social Media Ad 2" },
-        { id: "fJ9rUzIMcZQ", title: "Influencer Collaboration" },
-        { id: "QB7ACr7pUuE", title: "Campaign Results" }
-      ]
+      type: "image",
+      aspectRatio: "square", // 1080x1080
+      title: "Brand Identity Design",
+      category: "Graphic Design",
+      src: "/api/placeholder/300/300",
+      height: "h-80",
+      likes: 234,
+      comments: 12,
+      description: "Complete brand identity redesign for a tech startup"
     },
     {
       id: 3,
-      title: "Corporate Documentary",
-      category: "Video Production",
+      type: "image",
+      aspectRatio: "portrait", // 1080x1920
+      title: "UI/UX Design",
+      category: "Web Design",
+      src: "/api/placeholder/300/400",
+      height: "h-72",
+      likes: 189,
+      comments: 8,
+      description: "Mobile app interface design concept"
+    },
+    {
+      id: 5,
+      type: "image",
+      aspectRatio: "square", // 1080x1080
+      title: "Photography Portfolio",
+      category: "Photography",
+      src: "/api/placeholder/300/300",
+      height: "h-96",
+      likes: 445,
+      comments: 19,
+      description: "Portrait photography session highlights"
+    },
+    {
+      id: 6,
+      type: "image",
+      aspectRatio: "portrait", // 1080x1920
+      title: "Logo Collection",
+      category: "Branding",
+      src: "/api/placeholder/300/400",
+      height: "h-64",
+      likes: 123,
+      comments: 6,
+      description: "Collection of recent logo designs"
+    },
+    {
+      id: 8,
+      type: "image",
+      aspectRatio: "square", // 1080x1080
+      title: "Website Design",
+      category: "Web Design",
+      src: "/api/placeholder/300/300",
+      height: "h-88",
+      likes: 678,
+      comments: 32,
+      description: "E-commerce website redesign project"
+    },
+    {
+      id: 9,
+      type: "image",
+      aspectRatio: "portrait",
+      title: "Illustration Series",
+      category: "Illustration",
+      src: "/api/placeholder/300/480",
+      height: "h-[30rem]",
+      likes: 234,
+      comments: 11,
+      description: "Digital illustration collection"
+    },
+    {
+      id: 10,
+      type: "image",
+      aspectRatio: "square",
+      title: "Print Design",
+      category: "Print",
+      src: "/api/placeholder/300/300",
+      height: "h-84",
+      likes: 167,
+      comments: 9,
+      description: "Magazine layout and print materials"
+    },
+    {
+    id: 81, // New unique ID
+    type: "image",
+    aspectRatio: "square", // 1080x1080
+    title: "Creative Campaign",
+    category: "Marketing",
+    src: "/api/placeholder/300/300",
+    height: "h-80", // Adjust height as needed
+    likes: 156,
+    comments: 8,
+    description: "Social media marketing campaign design"
+  }
+  ];
+
+  const videoItems = [
+    {
+      id: 2,
+      type: "video",
+      title: "Documentary | Storytelling",
+      category: "Animation",
       date: "2024",
-      thumbnail: "/api/placeholder/400/300",
-      youtubeId: "9bZkp7q19f0",
-      description: "Documentary-style corporate video highlighting company culture and values.",
-      tags: ["Documentary", "Corporate", "Storytelling"],
+      thumbnail: "https://cdn.wallpapersafari.com/54/45/1c2FPv.jpg",
+      youtubeId: "CUAAT_5vhDw",
+      description: "Showcase of latest motion graphics work",
+      tags: ["Animation", "Motion Graphics", "Reel"],
       relatedVideos: [
-        { id: "9bZkp7q19f0", title: "Full Documentary" },
-        { id: "dQw4w9WgXcQ", title: "Employee Interviews" },
-        { id: "ScMzIvxBSi4", title: "Company Culture" },
-        { id: "L_jWHffIx5E", title: "Office Tour" },
-        { id: "fJ9rUzIMcZQ", title: "Leadership Stories" },
-        { id: "QB7ACr7pUuE", title: "Vision & Mission" }
+        { id: "CUAAT_5vhDw", title: "Pranil Naik" },
+        { id: "pQDTnEQv8Mo", title: "Inspiring Teaching Story | Ramesh Kulkarni - Jalna" },
+        { id: "5AIeCOoTWsE", title: "Documentary | Storytelling | Pappaya Farming I Prakirti Foundation" },
+        { id: "iE__2Irx28c", title: "About Organization | Corporate AV" },
+        { id: "VFh54L_LXiw", title: "A Journey from Hindi teacher to an English teacher - Suman Sharma" },
+        { id: "OZHG-T3TMq4", title: "What can we learn from the Polio Immunization drive to solve the English Illiteracy Problem" }
       ]
     },
     {
       id: 4,
-      title: "Social Media Campaign",
-      category: "Content Creation",
+      type: "video",
+      title: "Corporate Films",
+      category: "Commercial",
       date: "2024",
-      thumbnail: "/api/placeholder/400/300",
-      youtubeId: "kJQP7kiw5Fk",
-      description: "Engaging social media content series with high engagement rates.",
-      tags: ["Social Media", "Animation", "Digital"],
+      thumbnail: "https://www.picturesunfold.com/wp-content/themes/pictureunfold/img/services/Pictures-Unfold-Services-Corporate-films.jpg",
+      youtubeId: "ScMzIvxBSi4",
+      description: "30-second product commercial for e-commerce brand",
+      tags: ["Commercial", "Product", "Advertisement"],
       relatedVideos: [
-        { id: "kJQP7kiw5Fk", title: "Campaign Overview" },
-        { id: "dQw4w9WgXcQ", title: "Instagram Stories" },
-        { id: "ScMzIvxBSi4", title: "TikTok Content" },
-        { id: "L_jWHffIx5E", title: "Facebook Ads" },
-        { id: "fJ9rUzIMcZQ", title: "YouTube Shorts" },
-        { id: "QB7ACr7pUuE", title: "LinkedIn Posts" }
+        { id: "ZNWmAuuzncc", title: "Colors Marathi Serial | Sakhya Re | Making of Title Song | Monali Thakur" },
+        { id: "dQw4w9WgXcQ", title: "Extended Cut" },
+        { id: "L_jWHffIx5E", title: "Making Of" },
+        { id: "fJ9rUzIMcZQ", title: "Director's Commentary" }
       ]
     },
     {
-      id: 5,
-      title: "Event Coverage",
-      category: "Video Production",
+      id: 7,
+      type: "video",
+      title: "Animation | Promotional AVs",
+      category: "Social Media",
       date: "2024",
-      thumbnail: "/api/placeholder/400/300",
-      youtubeId: "lDK9QqIzhwk",
-      description: "Professional event documentation with cinematic quality.",
-      tags: ["Events", "Live Coverage", "Editing"],
+      thumbnail: "https://i.redd.it/mthr3x0q3m091.png",
+      youtubeId: "L_jWHffIx5E",
+      description: "Instagram story animations and posts",
+      tags: ["Social Media", "Instagram", "TikTok"],
       relatedVideos: [
-        { id: "lDK9QqIzhwk", title: "Event Highlights" },
-        { id: "dQw4w9WgXcQ", title: "Opening Ceremony" },
-        { id: "ScMzIvxBSi4", title: "Keynote Speeches" },
-        { id: "L_jWHffIx5E", title: "Panel Discussions" },
-        { id: "fJ9rUzIMcZQ", title: "Networking Sessions" },
-        { id: "QB7ACr7pUuE", title: "Closing Remarks" }
+        { id: "rODemvn3kwA", title: "Animation | Promotional AVs" },
+        { id: "7MKAj-Z6nG4", title: "Animation | Marketing" },
+        { id: "qB9tnA-zsps", title: "Animation | 3D | Trophy Launch" },
+        { id: "DrSQB94BjWk", title: "3D Text Reveal | Promo" },
+        { id: "rcVaMg8JOnI", title: "Animation | 3D | Trophy Reveal" }
       ]
     },
     {
-      id: 6,
-      title: "Explainer Video Series",
-      category: "Animation",
+      id: 11,
+      type: "video",
+      title: "Audio Series & Stories",
+      category: "Documentary",
       date: "2024",
       thumbnail: "/api/placeholder/400/300",
-      youtubeId: "y8Kyi0WNg40",
-      description: "Educational video series with custom animations and graphics.",
-      tags: ["Education", "Animation", "Graphics"],
+      youtubeId: "fJ9rUzIMcZQ",
+      description: "Corporate event highlights video",
+      tags: ["Documentary", "Corporate", "Events"],
       relatedVideos: [
-        { id: "y8Kyi0WNg40", title: "Series Introduction" },
-        { id: "dQw4w9WgXcQ", title: "Episode 1: Basics" },
-        { id: "ScMzIvxBSi4", title: "Episode 2: Advanced" },
-        { id: "L_jWHffIx5E", title: "Episode 3: Expert Tips" },
-        { id: "fJ9rUzIMcZQ", title: "Episode 4: Case Studies" },
-        { id: "QB7ACr7pUuE", title: "Episode 5: Conclusion" }
+        { id: "VzupYuJBIRI", title: "Audio Series & Stories | Generative AI" },
+        { id: "dQw4w9WgXcQ", title: "Employee Interviews" },
+        { id: "ScMzIvxBSi4", title: "Company Culture" },
+        { id: "L_jWHffIx5E", title: "Office Tour" }
       ]
     },
+    {
+      id: 12,
+      type: "video",
+      title: "Promo AVs | Marketing",
+      category: "Education",
+      date: "2024",
+      thumbnail: "/api/placeholder/400/300",
+      youtubeId: "QB7ACr7pUuE",
+      description: "Design tutorial for beginners",
+      tags: ["Tutorial", "Education", "Design"],
+      relatedVideos: [
+        { id: "9XSvJZBn_iI", title: "Promo AVs | Marketing" },
+        { id: "9eGp3C7XSrU", title: "Marketing AVs | Course Promotion" },
+        { id: "ScMzIvxBSi4", title: "Tips & Tricks" }
+      ]
+    },
+    {
+      id: 13,
+      type: "video",
+      title: "Corporate Communications",
+      category: "Branding",
+      date: "2024",
+      thumbnail: "/api/placeholder/400/300",
+      youtubeId: "ZbZSe6N_BXs",
+      description: "Award-winning brand campaign video",
+      tags: ["Branding", "Campaign", "Award"],
+      relatedVideos: [
+        { id: "HCfbtuRLTGY", title: "Decoding Workplace Fatigue: Why You Feel Exhausted Despite Sleep | Bee Mahimkar | EAP-India" },
+        { id: "ujvOJq6dGZg", title: "Corporate Communications" },
+        { id: "ScMzIvxBSi4", title: "Behind Scenes" }
+      ]
+    }
   ];
+
+  // Group image items by aspect ratio for mobile carousels
+  const groupedImageItems = {
+    square: imageItems.filter(item => item.aspectRatio === "square"),
+    portrait_photo: imageItems.filter(item => item.aspectRatio === "portrait")
+  };
+
+  // Function to distribute items evenly across columns
+  const distributeItemsInColumns = (items, numColumns) => {
+    const columns = Array.from({ length: numColumns }, () => []);
+    const columnHeights = Array(numColumns).fill(0);
+    
+    // Define height values for each height class
+    const heightMap = {
+      'h-64': 256,
+      'h-72': 288,
+      'h-80': 320,
+      'h-84': 336,
+      'h-88': 352,
+      'h-96': 384,
+      'h-[30rem]': 480
+    };
+    
+    items.forEach((item) => {
+      // Find the column with minimum height
+      const minHeightIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      columns[minHeightIndex].push(item);
+      
+      // Add the item's height to that column
+      const itemHeight = heightMap[item.height] || 320;
+      columnHeights[minHeightIndex] += itemHeight + 24; // 24px for gap
+    });
+    
+    return columns;
+  };
 
   // YouTube Embed Component
   const YouTubeEmbed = ({ videoId, title }) => {
@@ -140,7 +272,7 @@ const PortfolioPage = () => {
 
   // Video Modal Component
   const VideoModal = ({ project, isOpen, onClose }) => {
-    if (!project) return null;
+    if (!project || !project.relatedVideos) return null;
 
     return (
       <AnimatePresence>
@@ -152,10 +284,8 @@ const PortfolioPage = () => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={onClose}
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
             
-            {/* Modal Content */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -163,7 +293,6 @@ const PortfolioPage = () => {
               className="relative bg-gray-900 rounded-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto border border-gray-700"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={onClose}
                 className="absolute top-4 right-4 z-10 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
@@ -173,7 +302,6 @@ const PortfolioPage = () => {
                 </svg>
               </button>
 
-              {/* Modal Header */}
               <div className="p-6 border-b border-gray-700">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-sm font-medium text-white">
@@ -185,11 +313,10 @@ const PortfolioPage = () => {
                 <p className="text-gray-300 text-lg">{project.description}</p>
               </div>
 
-              {/* Video Grid */}
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-6">Project Videos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {project.relatedVideos?.map((video, index) => (
+                  {project.relatedVideos.map((video, index) => (
                     <motion.div
                       key={video.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -205,7 +332,6 @@ const PortfolioPage = () => {
                   ))}
                 </div>
 
-                {/* Project Tags */}
                 <div className="mt-8">
                   <h4 className="text-lg font-semibold text-white mb-3">Tags</h4>
                   <div className="flex flex-wrap gap-2">
@@ -227,7 +353,107 @@ const PortfolioPage = () => {
     );
   };
 
-  // Modal control functions
+  // Mobile Carousel Component (for images only)
+  const MobileCarousel = ({ items, title, aspectRatio, currentSlide, setCurrentSlide }) => {
+    const nextSlide = () => {
+      setCurrentSlide((prev) => ({
+        ...prev,
+        [aspectRatio]: (prev[aspectRatio] + 1) % items.length
+      }));
+    };
+
+    const prevSlide = () => {
+      setCurrentSlide((prev) => ({
+        ...prev,
+        [aspectRatio]: prev[aspectRatio] === 0 ? items.length - 1 : prev[aspectRatio] - 1
+      }));
+    };
+
+    if (items.length === 0) return null;
+
+    return (
+      <div className="mb-8">
+        <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
+        <div className="relative">
+          <div className="overflow-hidden rounded-2xl">
+            <div 
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {items.map((item) => (
+                <div key={item.id} className="w-full flex-shrink-0 px-2">
+                  <div 
+                    className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700"
+                    style={{ aspectRatio: aspectRatio === "square" ? "1/1" : "9/16" }}
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/20">
+                        {item.category}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h4 className="text-lg font-bold text-white mb-2 line-clamp-2">
+                        {item.title}
+                      </h4>
+                      <div className="flex items-center space-x-4 text-sm text-gray-300">
+                        <div className="flex items-center space-x-1">
+                          <Heart className="w-4 h-4" />
+                          <span>{item.likes}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <MessageCircle className="w-4 h-4" />
+                          <span>{item.comments}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {items.length > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full backdrop-blur-sm transition-colors"
+              >
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full backdrop-blur-sm transition-colors"
+              >
+                <ChevronRight className="w-6 h-6 text-white" />
+              </button>
+            </>
+          )}
+
+          <div className="flex justify-center mt-4 space-x-2">
+            {items.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(prev => ({ ...prev, [aspectRatio]: index }))}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-600'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const openModal = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -240,7 +466,6 @@ const PortfolioPage = () => {
     document.body.style.overflow = "auto";
   };
 
-  // Handle escape key
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -258,244 +483,247 @@ const PortfolioPage = () => {
     };
   }, [isModalOpen]);
 
-  // Handle card position swapping
-  const handleCardClick = (clickedPosition) => {
-    if (selectedCard !== null) {
-      setSelectedCard(null);
-      return;
-    }
-
-    const newOrder = [...cardOrder];
-    
-    if (clickedPosition === 0) {
-      // Left card clicked - rotate left
-      newOrder[0] = cardOrder[2]; // right goes to left
-      newOrder[1] = cardOrder[0]; // left goes to center  
-      newOrder[2] = cardOrder[1]; // center goes to right
-    } else if (clickedPosition === 2) {
-      // Right card clicked - rotate right
-      newOrder[0] = cardOrder[1]; // center goes to left
-      newOrder[1] = cardOrder[2]; // right goes to center
-      newOrder[2] = cardOrder[0]; // left goes to right
-    } else {
-      // Middle card clicked - just show selection state
-      setSelectedCard(1);
-      return;
-    }
-    
-    setCardOrder(newOrder);
-  };
-
-  const getCardZIndex = (position) => {
-    if (selectedCard === 1) {
-      return position === 1 ? 50 : 10;
-    }
-    
-    // Middle position always has highest z-index
-    if (position === 1) return 30; // Middle card on top
-    if (position === 0) return 20; // Left card
-    if (position === 2) return 25; // Right card
-    return 10;
-  };
-
-  // Responsive card positioning
-  const getCardPosition = (position) => {
-    if (selectedCard === 1 && position === 1) {
-      // Selected middle card
-      return {
-        x: 0,
-        y: -20,
-        rotate: 0,
-        scale: 1.1,
-      };
-    } else if (selectedCard === 1) {
-      // Other cards when middle is selected
-      const backPositions = [
-        { x: -120, y: 60, rotate: -12, scale: 0.9 }, // Left
-        { x: 0, y: 40, rotate: 0, scale: 0.9 },      // Middle
-        { x: 120, y: 60, rotate: 12, scale: 0.9 }    // Right
-      ];
-      return backPositions[position];
-    }
-
-    // Responsive default positions
-    const positions = [
-      { x: 0, y: 0, rotate: 0 }, // Left card
-      { x: 0, y: 0, rotate: 0 }, // Middle card - on top
-      { x: 0, y: 0, rotate: 0 }  // Right card
-    ];
-    return positions[position];
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      {/* Header */}
-      <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-8 sm:pb-12">
+      <div className="container mx-auto px-4 py-20">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-16"
+          className="text-center mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Portfolio
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-            Showcasing our creative excellence in digital media production and
-            marketing campaigns
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Showcasing our creative excellence in digital media production and marketing campaigns
           </p>
         </motion.div>
 
-        {/* Responsive Overlapping Cards - All Screen Sizes with Proper Padding */}
-        <div className="mb-20 px-4 sm:px-8">
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative flex justify-center items-center h-[30rem] sm:h-[35rem] lg:h-[45rem] overflow-visible">
-              {[0, 1, 2].map((position) => {
-                const itemIndex = cardOrder[position];
-                const item = portfolioItems[itemIndex];
-                
-                return (
-                  <motion.div
-                    key={`${item.id}-${position}`}
-                    className={`absolute cursor-pointer
-                      ${position === 0 ? 
-                        'w-[14rem] h-[22rem] sm:w-[16rem] sm:h-[24rem] md:w-[18rem] md:h-[28rem] lg:w-[20rem] lg:h-[32rem] -translate-x-[70px] sm:-translate-x-[80px] md:-translate-x-[100px] lg:-translate-x-[120px] translate-y-[20px] sm:translate-y-[25px] md:translate-y-[30px] lg:translate-y-[40px] -rotate-[6deg] sm:-rotate-[7deg] lg:-rotate-[8deg]' : ''}
-                      ${position === 1 ? 
-                        'w-[16rem] h-[26rem] sm:w-[18rem] sm:h-[28rem] md:w-[20rem] md:h-[32rem] lg:w-[22rem] lg:h-[36rem] translate-x-0 translate-y-0 rotate-0' : ''}
-                      ${position === 2 ? 
-                        'w-[14rem] h-[22rem] sm:w-[16rem] sm:h-[24rem] md:w-[18rem] md:h-[28rem] lg:w-[20rem] lg:h-[32rem] translate-x-[70px] sm:translate-x-[80px] md:translate-x-[100px] lg:translate-x-[120px] translate-y-[20px] sm:translate-y-[25px] md:translate-y-[30px] lg:translate-y-[40px] rotate-[6deg] sm:rotate-[7deg] lg:rotate-[8deg]' : ''}
-                    `}
-                    style={{ zIndex: getCardZIndex(position) }}
-                    animate={getCardPosition(position)}
-                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                    onClick={() => handleCardClick(position)}
-                    whileHover={{ scale: selectedCard === null ? 1.02 : 1.05 }}
-                  >
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-800 border border-gray-700 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-                      {/* Portrait Graphic / Thumbnail */}
-                      <div className="relative w-full h-4/5 bg-gray-700 overflow-hidden">
-                        <img
-                          src={item.thumbnail}
-                          alt={item.title}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1 text-sm border border-gray-600">
-                          <Calendar className="w-3 h-3 inline mr-1" />
-                          {item.date}
-                        </div>
-                        
-                        {/* Play button overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                          <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
-                            <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+        {/* Images Section */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Creative <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Works</span>
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Explore our graphic design, branding, and visual identity projects
+            </p>
+          </motion.div>
+
+          {/* Mobile Image Carousels */}
+          <div className="block lg:hidden">
+            <MobileCarousel 
+              items={groupedImageItems.square}
+              title="Square Posts (1080x1080)"
+              aspectRatio="square"
+              currentSlide={currentSlides.square}
+              setCurrentSlide={setCurrentSlides}
+            />
+            
+            <MobileCarousel 
+              items={groupedImageItems.portrait_photo}
+              title="Portrait Photos (1080x1920)"
+              aspectRatio="portrait_photo"
+              currentSlide={currentSlides.portrait_photo}
+              setCurrentSlide={setCurrentSlides}
+            />
+          </div>
+
+          {/* Desktop Image Masonry Grid - UPDATED FOR EVEN BOTTOM */}
+          <div className="hidden lg:block">
+            {/* For Large screens (3 columns) */}
+            <div className="hidden lg:block xl:hidden">
+              <div className="flex gap-6">
+                {distributeItemsInColumns(imageItems, 3).map((column, columnIndex) => (
+                  <div key={columnIndex} className="flex-1 space-y-6">
+                    {column.map((item, index) => (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: (columnIndex * column.length + index) * 0.1 }}
+                        className="group"
+                      >
+                        <div className={`relative ${item.height} bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-500 transition-all duration-300 transform hover:scale-[1.02]`}>
+                          <div className="relative w-full h-full">
+                            <img
+                              src={item.src}
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                            />
+                            
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                            <div className="absolute top-4 left-4">
+                              <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/20">
+                                {item.category}
+                              </span>
+                            </div>
+
+                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                              <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">
+                                {item.title}
+                              </h3>
+                              
+                              <div className="flex items-center space-x-4 text-sm text-gray-300">
+                                <div className="flex items-center space-x-1">
+                                  <Heart className="w-4 h-4" />
+                                  <span>{item.likes}</span>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <MessageCircle className="w-4 h-4" />
+                                  <span>{item.comments}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                      {/* Card Info */}
-                      <div className="p-3 sm:p-4 lg:p-6 h-1/5 flex flex-col justify-center">
-                        <div className="flex items-center justify-between mb-1 sm:mb-2 lg:mb-3">
-                          <span className="text-xs bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 lg:px-3 py-1 rounded-full font-medium">
-                            {item.category}
-                          </span>
-                          <ExternalLink className="w-3 sm:w-4 lg:w-5 h-3 sm:h-4 lg:h-5 text-gray-400 hover:text-white transition-colors" />
-                        </div>
-                        <h3 className="text-sm sm:text-base lg:text-xl font-bold text-white leading-tight">
-                          {item.title}
-                        </h3>
-                      </div>
-
-                      {/* Hover overlay with description */}
+            {/* For Extra Large screens (4 columns) */}
+            <div className="hidden xl:block">
+              <div className="flex gap-6">
+                {distributeItemsInColumns(imageItems, 4).map((column, columnIndex) => (
+                  <div key={columnIndex} className="flex-1 space-y-6">
+                    {column.map((item, index) => (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 sm:p-4 lg:p-6"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
+                        key={item.id}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: (columnIndex * column.length + index) * 0.1 }}
+                        className="group"
                       >
-                        <p className="text-gray-200 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
-                          {item.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {item.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="text-xs bg-white/20 text-white px-2 py-1 rounded-md backdrop-blur-sm"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                        <div className={`relative ${item.height} bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-500 transition-all duration-300 transform hover:scale-[1.02]`}>
+                          <div className="relative w-full h-full">
+                            <img
+                              src={item.src}
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                            />
+                            
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                            <div className="absolute top-4 left-4">
+                              <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/20">
+                                {item.category}
+                              </span>
+                            </div>
+
+                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                              <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">
+                                {item.title}
+                              </h3>
+                              
+                              <div className="flex items-center space-x-4 text-sm text-gray-300">
+                                <div className="flex items-center space-x-1">
+                                  <Heart className="w-4 h-4" />
+                                  <span>{item.likes}</span>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <MessageCircle className="w-4 h-4" />
+                                  <span>{item.comments}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </div>
                         </div>
                       </motion.div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Responsive Grid for Remaining Projects */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
-          {portfolioItems.slice(3).map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-              onClick={() => openModal(item)}
-            >
-              <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105">
-                {/* Video thumbnail */}
-                <div className="relative h-40 sm:h-48 bg-gray-700 overflow-hidden">
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className="object-cover w-full h-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="w-8 sm:w-12 h-8 sm:h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
+        {/* Videos Section - UNCHANGED */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Video <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Projects</span>
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Watch our latest video productions, animations, and commercials
+            </p>
+          </motion.div>
+
+          {/* Video Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {videoItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group cursor-pointer"
+                onClick={() => openModal(item)}
+              >
+                <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105">
+                  <div className="relative h-48 bg-gray-700 overflow-hidden">
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="object-cover w-full h-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
                   </div>
-                  <div className="absolute top-2 right-2 bg-black bg-opacity-50 rounded px-2 py-1">
-                    <Calendar className="w-3 h-3 inline mr-1" />
-                    <span className="text-xs text-white">{item.date}</span>
-                  </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-4 sm:p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs bg-purple-600 text-white px-3 py-1 rounded-full">
-                      {item.category}
-                    </span>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
-                  </div>
-
-                  <h3 className="text-lg sm:text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                    {item.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {item.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-md flex items-center"
-                      >
-                        <Tag className="w-3 h-3 mr-1" />
-                        {tag}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs bg-purple-600 text-white px-3 py-1 rounded-full">
+                        {item.category}
                       </span>
-                    ))}
+                      <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+                    </div>
+
+                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                      {item.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-md flex items-center"
+                        >
+                          <Tag className="w-3 h-3 mr-1" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Call to Action */}
@@ -503,39 +731,28 @@ const PortfolioPage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-12 sm:mt-20 px-4"
+          className="text-center"
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
             Ready to Start Your Project?
           </h2>
           <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Let&apos;s collaborate to create something amazing for your brand
+            Let's collaborate to create something amazing for your brand
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
             Get In Touch
           </button>
         </motion.div>
       </div>
 
-      {/* Video Modal */}
+      {/* Video Modal - Only for video items */}
       <VideoModal 
         project={selectedProject} 
         isOpen={isModalOpen} 
         onClose={closeModal} 
       />
-
-      {/* Custom CSS for hiding scrollbars */}
-      <style jsx>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };
 
-export default PortfolioPage;
+export default ResponsivePortfolioGrid;

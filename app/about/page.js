@@ -1,178 +1,262 @@
 "use client";
 
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Lightbulb, Rocket, Star } from 'lucide-react';
+import Image from 'next/image';
+import banner from '@/public/about/about.png';
 
 const AboutUs = () => {
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
+  const [hoveredSection, setHoveredSection] = useState(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const clientTypes = [
+    "Startups & Creators",
+    "MSMEs", 
+    "NGOs & Educators",
+    "Production Houses",
+    "Social Enterprises",
+    "Corporate & CSR",
+    "Digital-first Brands"
+  ];
+
+  const keyPrinciples = [
+    "Here, storytelling meets strategy.",
+    "Creativity meets accountability.", 
+    "And execution meets empathy.",
+    "The journey started solo."
+  ];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-cyan-600/10"></div>
-      
-      <div className="relative container mx-auto px-4 py-20">
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
-            About Us
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We&apos;re a creative digital agency passionate about transforming ideas into extraordinary experiences
-          </p>
-        </motion.div>
-
-        {/* Story Section */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+    <>
+      <div className="mt-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
           >
-            <h2 className="text-3xl font-bold text-white">
-              Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Story</span>
-            </h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Founded with a vision to bridge creativity and technology, we &apos; ve been crafting digital solutions that make a real difference. Our journey began with a simple belief: every brand has a unique story worth telling.
+            <h1 className="text-4xl font-bold text-white">The Founder’s Journey
+            </h1>
+            <p className="text-lg text-gray-600 w-95 mx-auto">
+              It started with breakfast and clarity... <br></br>
+              By Sudarshan (Founder – GlassMate Media)
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Today, we &apos; re a team of passionate creators, strategists, and innovators dedicated to delivering exceptional results for our clients.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 gap-6"
-          >
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">150+</div>
-              <div className="text-sm text-gray-400">Projects</div>
-            </div>
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-2">80+</div>
-              <div className="text-sm text-gray-400">Clients</div>
-            </div>
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">8+</div>
-              <div className="text-sm text-gray-400">Years</div>
-            </div>
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">25+</div>
-              <div className="text-sm text-gray-400">Awards</div>
-            </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* Values Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Values</span>
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              The principles that guide everything we do
-            </p>
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Image
+          src={banner}
+          alt='about-us banner'
+        />
+      </motion.div>
+
+   <div className="min-h-screen bg-[#0f172a] text-white overflow-hidden">
+      <div className="container mx-auto px-6 py-16 relative">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 right-20 w-64 h-64 bg-slate-600/5 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-32 left-16 w-80 h-80 bg-gray-500/4 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Centered */}
+          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center space-x-3 bg-slate-700/15 px-8 py-4 rounded-full border border-slate-600/25 mb-8 backdrop-blur-sm hover:bg-slate-600/20 transition-all duration-300">
+              <div className="w-3 h-3 bg-sage-500 rounded-full" style={{backgroundColor: '#6B8E73'}}></div>
+              <span className="text-slate-200 text-base font-medium tracking-wide">
+                The Agency Today
+              </span>
+            </div>
+            
+            <h1 className="text-5xl lg:text-7xl font-bold mb-8 text-white leading-tight">
+              From one vision to a{" "}
+              <span className="text-sage-400 italic font-light block mt-2" style={{color: '#6B8E73'}}>
+                full-service creative engine
+              </span>
+            </h1>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Lightbulb, title: "Innovation", desc: "We embrace cutting-edge technologies and creative approaches to solve complex challenges." },
-              { icon: Users, title: "Collaboration", desc: "We believe in the power of teamwork and building strong partnerships with our clients." },
-              { icon: Award, title: "Excellence", desc: "We strive for perfection in every detail, delivering work that exceeds expectations." }
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+          {/* New Asymmetrical Layout */}
+          <div className="space-y-16">
+            {/* Row 1: Large Left + Small Right */}
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Who We Are - Large Card */}
+              <div 
+                className={`lg:col-span-2 group transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
+                onMouseEnter={() => setHoveredSection('who')}
+                onMouseLeave={() => setHoveredSection(null)}
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon className="w-8 h-8 text-white" />
+                <div className="relative bg-slate-800/25 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-12 h-full transition-all duration-500 group-hover:bg-slate-800/35 group-hover:border-slate-500/50 group-hover:shadow-2xl group-hover:shadow-slate-900/30">
+                  <div className="absolute top-6 right-6 w-20 h-20 bg-sage-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#6B8E73', opacity: hoveredSection === 'who' ? '0.1' : '0.05'}}></div>
+                  
+                  <h2 className="text-4xl font-bold mb-8 text-white group-hover:text-sage-200 transition-colors duration-300" style={{color: hoveredSection === 'who' ? '#8FA68E' : 'white'}}>
+                    Who We Are
+                  </h2>
+                  <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
+                    GlassMate Media is a Mumbai-based media agency that transforms ideas into impactful visuals and strategy-driven content. Built on lived experience, it's a team-led extension of everything the founder learned the hard way.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{value.title}</h3>
-                <p className="text-gray-300">{value.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </div>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-          >
-            <Target className="w-12 h-12 text-blue-400 mb-6" />
-            <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
-            <p className="text-gray-300 leading-relaxed">
-              To empower brands with innovative digital solutions that create lasting impact and meaningful connections with their audiences.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-          >
-            <Rocket className="w-12 h-12 text-purple-400 mb-6" />
-            <h3 className="text-2xl font-bold text-white mb-4">Our Vision</h3>
-            <p className="text-gray-300 leading-relaxed">
-              To be the creative partner that transforms bold ideas into extraordinary digital experiences that inspire and engage globally.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center"
-        >
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-12 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">
-              Ready to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Work Together</span>?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let &apos; s create something amazing together. Your story deserves to be told with passion and creativity.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300"
+              {/* Why GlassMate - Vertical Card */}
+              <div 
+                className={`group transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
+                onMouseEnter={() => setHoveredSection('why')}
+                onMouseLeave={() => setHoveredSection(null)}
               >
-                Start Your Project
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-all duration-300"
+                <div className="relative bg-slate-800/25 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-8 h-full transition-all duration-500 group-hover:bg-slate-800/35 group-hover:border-slate-500/50 group-hover:shadow-2xl group-hover:shadow-slate-900/30">
+                  <div className="absolute bottom-6 left-6 w-16 h-16 bg-terracotta-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#C17B5A', opacity: hoveredSection === 'why' ? '0.1' : '0.05'}}></div>
+                  
+                  <h2 className="text-2xl font-bold mb-6 text-white group-hover:text-terracotta-200 transition-colors duration-300" style={{color: hoveredSection === 'why' ? '#D19B7C' : 'white'}}>
+                    Why 'GlassMate'?
+                  </h2>
+                  <div className="space-y-4 text-gray-300">
+                    <p className="text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                      Because great media should be like glass — clear, reflective, and real.
+                    </p>
+                    <p className="text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                      And every brand deserves a mate that's transparent, collaborative, and rooted in purpose.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2: Small Left + Large Right */}
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Our Clients - Compact Card */}
+              <div 
+                className={`group transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
+                onMouseEnter={() => setHoveredSection('clients')}
+                onMouseLeave={() => setHoveredSection(null)}
               >
-                Learn More
-              </motion.button>
+                <div className="relative bg-slate-800/25 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-8 h-full transition-all duration-500 group-hover:bg-slate-800/35 group-hover:border-slate-500/50 group-hover:shadow-2xl group-hover:shadow-slate-900/30">
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-teal-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#6B9B9B', opacity: hoveredSection === 'clients' ? '0.1' : '0.05'}}></div>
+                  
+                  <h2 className="text-2xl font-bold mb-6 text-white group-hover:text-teal-200 transition-colors duration-300" style={{color: hoveredSection === 'clients' ? '#8BB0B0' : 'white'}}>
+                    Our Clients Include
+                  </h2>
+                  <ul className="space-y-2 text-gray-300">
+                    {clientTypes.map((client, index) => (
+                      <li 
+                        key={index}
+                        className="flex items-center space-x-2 text-sm transition-all duration-300 hover:text-teal-300 hover:translate-x-1 list-none"
+                      >
+                        <div className="w-1.5 h-1.5 bg-teal-400/60 rounded-full group-hover:bg-teal-400 transition-colors duration-300" style={{backgroundColor: hoveredSection === 'clients' ? '#6B9B9B' : '#6B9B9B80'}}></div>
+                        <span> {client}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* What We Do - Large Card */}
+              <div 
+                className={`lg:col-span-2 group transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
+                onMouseEnter={() => setHoveredSection('what')}
+                onMouseLeave={() => setHoveredSection(null)}
+              >
+                <div className="relative bg-slate-800/25 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-12 h-full transition-all duration-500 group-hover:bg-slate-800/35 group-hover:border-slate-500/50 group-hover:shadow-2xl group-hover:shadow-slate-900/30">
+                  <div className="absolute bottom-6 left-6 w-20 h-20 bg-rose-500/10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{backgroundColor: '#B5838D', opacity: hoveredSection === 'what' ? '0.1' : '0.05'}}></div>
+                  
+                  <h2 className="text-4xl font-bold mb-8 text-white group-hover:text-rose-200 transition-colors duration-300" style={{color: hoveredSection === 'what' ? '#C599A3' : 'white'}}>
+                    What We Do
+                  </h2>
+                  <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
+                    GlassMate Media delivers full-spectrum creative and digital solutions. From powerful video products to social media that speaks your brand language, every service is crafted with intent. We help founders and leaders build personal brands, consult on media strategy, drive digital marketing, and develop websites that convert. Whether it's crushing it on YouTube or scaling an online presence, GlassMate partners with you to make content that works.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Final Section - Full Width with Side-by-Side Content */}
+            <div className={`transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="bg-gradient-to-r from-slate-800/30 via-slate-800/20 to-slate-800/30 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-16 hover:bg-slate-800/40 hover:border-slate-500/50 transition-all duration-500">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  {/* Left Content */}
+                  <div className="space-y-6">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+                      Our Journey: <br/>
+                      <span className="text-sage-400" style={{color: '#6B8E73'}}>Crafted with Purpose</span>
+                    </h2>
+                    <div className="w-16 h-1 bg-sage-500 rounded-full" style={{backgroundColor: '#6B8E73'}}></div>
+                    <p className="text-xl text-gray-300 leading-relaxed">
+                      <strong className="text-white">
+                        GlassMate Media is more than a content studio.
+                      </strong>
+                    </p>
+                    <p className="text-lg text-gray-300 leading-relaxed">
+                      It is a creative collective built on years of real experience and mindful evolution.
+                    </p>
+                  </div>
+                  
+                  {/* Right Content */}
+                  <div className="space-y-8">
+                    <div className="space-y-6">
+                      <p className="text-white font-semibold hover:text-sage-200 transition-colors duration-300" style={{"--hover-color": '#8FA68E'}}>
+                        Where storytelling blends with thoughtful strategy.
+                      </p>
+                      <p className="text-white font-semibold hover:text-terracotta-200 transition-colors duration-300">
+                        Where creativity meets responsibility.
+                      </p>
+                      <p className="text-white font-semibold hover:text-teal-200 transition-colors duration-300">
+                        And where every project is handled with care and intention.
+                      </p>
+                      <p className="text-white font-semibold hover:text-rose-200 transition-colors duration-300">
+                        From humble beginnings to a trusted partner for many brands.
+                      </p>
+                    </div>
+                    
+                    <div className="pt-6 border-t border-slate-600/30">
+                      <p className="text-xl text-white">
+                        <strong>
+                          Today, we continue this journey with every client,<br></br> team member, and story we're honored to tell.
+                        </strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
+
+    
+  
+    </>
   );
 };
 
 export default AboutUs;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

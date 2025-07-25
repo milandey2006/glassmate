@@ -26,8 +26,8 @@ const ResponsiveNavbar = () => {
     { name: "Home", icon: Home, href: "/" },
     { name: "About", icon: User, href: "/about" },
     { name: "Services", icon: Briefcase, href: "/services" },
-    { name: "Contact", icon: Mail, href: "/contact" },
     { name: "Portfolio", icon: Settings, href: "/portfolio" },
+    { name: "Contact", icon: Mail, href: "/contact" },
   ];
 
   const navbarClasses = hasScrolled
@@ -64,7 +64,7 @@ const ResponsiveNavbar = () => {
                 />
                 {/* ADDED: Company name styled to match the navbar's text color */}
                 <span className={`text-2xl font-bold  ${textColorClasses}`}>
-                  Glassmate Media
+                  GlassMate Media
                 </span>
               </div>
             </motion.a>

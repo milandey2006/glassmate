@@ -46,7 +46,7 @@ const cardsData = [
   {
     title: "Photography & Event Coverage",
     category: "Product, corporate, and candid storytelling.",
-    src: "https://images.unsplash.com/photo-1511818963245-c8b261859b3d?q=80&w=1932&auto=format&fit=crop",
+    src: "/services/photo.jpg",
     content: (
       <div>
         <p>Professional photography services that capture moments and tell stories. From corporate events to product shoots, we deliver stunning visuals.</p>

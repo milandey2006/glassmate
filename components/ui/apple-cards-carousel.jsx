@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../../hooks/use-outside-click";
+import Image from "next/image";
 
 export const CarouselContext = createContext({
   onCardClose: () => {},
@@ -242,6 +243,7 @@ export const BlurImage = ({
   ...rest
 }) => {
   const [isLoading, setLoading] = useState(true);
+  
   return (
     <img
       className={cn(
@@ -254,9 +256,7 @@ export const BlurImage = ({
       width={width}
       height={height}
       loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
       alt={alt ? alt : "Background of a beautiful view"}
-      {...rest} />
+    />
   );
 };

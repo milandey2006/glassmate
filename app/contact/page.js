@@ -7,13 +7,29 @@ export default function ContactComponent() {
     name: "",
     email: "",
     phone: "",
-    referral: "",
+    services: "",
     message: "",
     agreeToTerms: false,
   });
 
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+
+  const serviceOptions = [
+    "Video Production",
+    "Graphic Design",
+    "Content Creation",
+    "Personal Branding",
+    "Branding & Logo Design",
+    "Social Media Management",
+    "Consultation Services (Media Strategy & Branding Advisory)",
+    "Digital Marketing",
+    "Web Design & Development",
+    "Mobile App Development",
+    "E-commerce Solutions",
+    "UI/UX Design",
+    "SEO Services",
+  ];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,7 +40,7 @@ export default function ContactComponent() {
   };
 
   const validateForm = () => {
-    if (!formData.name || !formData.email || !formData.referral) {
+    if (!formData.name || !formData.email || !formData.services) {
       alert("Please fill in all required fields.");
       return false;
     }
@@ -58,7 +74,7 @@ export default function ContactComponent() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          referral: formData.referral,
+          services: formData.services,
           message: formData.message,
         }),
       });
@@ -72,7 +88,7 @@ export default function ContactComponent() {
           name: "",
           email: "",
           phone: "",
-          referral: "",
+          services: "",
           message: "",
           agreeToTerms: false,
         });
@@ -147,7 +163,7 @@ export default function ContactComponent() {
                   Message sent successfully! We&apos;ll get back to you soon.
                 </div>
               )}
-              
+
               {submitStatus === 'error' && (
                 <div className="bg-red-500/20 border border-red-500/30 text-red-200 px-4 py-3 rounded-lg">
                   Failed to send message. Please try again or contact us directly.
@@ -200,18 +216,25 @@ export default function ContactComponent() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Where did you hear about us?{" "}
+                  What services do you want?{" "}
                   <span className="text-red-400">*</span>
                 </label>
-                <input
-                  type="text"
-                  name="referral"
-                  value={formData.referral}
+                <select
+                  name="services"
+                  value={formData.services}
                   onChange={handleInputChange}
-                  placeholder="Instagram, Friend, etc."
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   required
-                />
+                >
+                  <option value="" className="text-gray-500">
+                    Select a service...
+                  </option>
+                  {serviceOptions.map((service, index) => (
+                    <option key={index} value={service} className="text-white">
+                      {service}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
