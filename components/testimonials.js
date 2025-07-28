@@ -13,31 +13,31 @@ const TestimonialSection = () => {
     },
     {
       quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "It has been a matter of pride and joy to see Sudarshan grow as a professional and as a person at LeapForWord, where he has demonstrated exceptional professional skills and commitment to our mission of enhancing English literacy. Over the years, he has built and led a media production team that has improved impact of our educational content. I was in awe of the media team's accomplishment when they delivered 50 episodes for Doordarshan &spos; s educational TV series within an astonishing 45-day timeframe—Sudarshan was leading from the front!",
+      name: "Mandar Gite",
+      designation: "Co-Founder @ LeapForWord",
+      src: "/testi/mandar.jpeg",
     },
     {
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "I worked with Sudarshan at Leapforword, where he consistently impressed me with his creativity and dedication. He played a key role in producing amazing videos that captured our projects on the ground and significantly contributed to our digital content development efforts. His attention to detail and innovative ideas helped elevate our content, making it more engaging and impactful. I highly recommend Sudarshan for any project that requires a talented and driven professional.",
+      name: "Roopali Mohite ",
+      designation: "#CSR #Corporate Social Responsibility",
+      src: "/testi/Roopali.jpeg",
     },
     {
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
-      designation: "Engineering Lead at DataPro",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "Excellent Professional in Digital Marketing and Content Development. Highly dedicated and committed fellow. It was an enriching experience working with Sudharshan, though for a short period. Definitely he will be the best choice and will be a great asset, whichever company he works for.",
+      name: "SASTHA RAJAGOPAL",
+      designation: "Manager ~ Business Excellence",
+      src: "/testi/satsha.jpeg",
     },
     {
       quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-      name: "Lisa Thompson",
-      designation: "VP of Technology at FutureNet",
-      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "I had the pleasure of working with Sudarshan for a year as part of his media team. His expertise in event management operations and media production was instrumental to our success. Sudarshan excelled in managing and organizing the WPC, a key competition held by our organization. His leadership and organizational skills ensured smooth execution of complex events. I highly recommend Sudarshan for roles requiring strong project management and media production capabilities.",
+      name: "Krit Gupta ",
+      designation: "Software Developer at Rutgers SAS-IT",
+      src: "/testi/krit.jpeg",
     },
   ];
   return (

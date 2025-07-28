@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import logo from '@/public/assets/logo.png'; // Adjust the path to your logo image
+import Link from 'next/link';
 
 const Footer = () => {
   const primaryColor = '#101828';
@@ -56,10 +57,10 @@ const Footer = () => {
             <h3 className="text-lg font-semibold leading-6">Contact Us</h3>
             <p className="mt-4 text-base text-gray-300">
               <a href="mailto:hello@glassmatemedia.com" className="hover:text-white transition-colors duration-300">
-                hello@glassmatemedia.com
+                info@glassmatemedia.com
               </a>
             </p>
-            <p className="mt-2 text-base text-gray-300">+1 (555) 123-4567</p>
+            <p className="mt-2 text-base text-gray-300">+91 80978 03740</p>
           </div>
 
           {/* Links Section */}
@@ -93,7 +94,7 @@ const Footer = () => {
           </div>
           <div className="flex gap-x-4 order-3">
             {socialLinks.map((social, index) => (
-              <a 
+              <Link 
                 key={index} 
                 href={social.href} 
                 target="_blank"
@@ -102,13 +103,13 @@ const Footer = () => {
               >
                 <span className="sr-only">{social.href}</span>
                 {social.icon}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </div>
           <div className='flex flex-col items-center justify-center py-2 bg-gray-800'>
-            <h1 className='text-gray-400'>Made with ❤️ by <a href="https://linkedin/in/milandey">Milan Dey</a></h1>
+            <h1 className='text-gray-400'>Made with <span className='text-white'>♥</span> by <a href="https://www.linkedin.com/in/milandey/" target="_blank">Milan Dey</a></h1>
           </div>
     </footer>
   );
