@@ -49,8 +49,8 @@ const Footer = () => {
           {/* Logo and Contact Section */}
           <div className="md:col-span-4 lg:col-span-5">
             {/* Logo Placeholder */}
-            <div className="w-40 h-12 mb-6 flex items-center justify-center border-2 border-dashed border-gray-600">
-              <Image src={logo} alt="Glassmate Media Logo" width={160} height={48} className="object-contain" />
+            <div className="w-50 h-12 mb-6 flex items-center justify-center border-2 border-dashed border-gray-600">
+              <Image src={logo} alt="Glassmate Media Logo" width={40} height={12} className="object-contain" />
               <span className="font-bold text-xl text-gray-400"> GLASSMATE</span>
             </div>
             <h3 className="text-lg font-semibold leading-6">Contact Us</h3>
@@ -107,6 +107,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+          <div className='flex flex-col items-center justify-center py-2 bg-gray-800'>
+            <h1 className='text-gray-400'>Made with ❤️ by <a href="https://linkedin/in/milandey">Milan Dey</a></h1>
+          </div>
     </footer>
   );
 };

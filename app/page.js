@@ -16,7 +16,7 @@ export default function Home() {
         <div className="font-bold text-[50px]">We Dont Just Create Content — We Create Movements.</div>
       </EnhancedHeroDemo>
       <ContainerScroll>
-        <Image
+        <img
           src="https://ui.aceternity.com/linear.webp"
           alt="Description"
           className="w-full h-full object-cover rounded-lg"

@@ -113,7 +113,7 @@ export const Carousel = ({
             ))}
           </div>
         </div>
-        <div className="mr-10 flex justify-end gap-2">
+        <div className="mr-10 flex justify-center gap-2">
           <button
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
             onClick={scrollLeft}

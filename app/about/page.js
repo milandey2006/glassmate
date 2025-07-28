@@ -225,16 +225,16 @@ const AboutUs = () => {
                   {/* Right Content */}
                   <div className="space-y-8">
                     <div className="space-y-6">
-                      <p className="text-white font-semibold hover:text-sage-200 transition-colors duration-300" style={{"--hover-color": '#8FA68E'}}>
+                      <p className="text-white font-semibold transition-colors duration-300" style={{"--hover-color": '#8FA68E'}}>
                         Where storytelling blends with thoughtful strategy.
                       </p>
-                      <p className="text-white font-semibold hover:text-terracotta-200 transition-colors duration-300">
+                      <p className="text-white font-semibold transition-colors duration-300">
                         Where creativity meets responsibility.
                       </p>
-                      <p className="text-white font-semibold hover:text-teal-200 transition-colors duration-300">
+                      <p className="text-white font-semibold transition-colors duration-300">
                         And where every project is handled with care and intention.
                       </p>
-                      <p className="text-white font-semibold hover:text-rose-200 transition-colors duration-300">
+                      <p className="text-white font-semibold transition-colors duration-300">
                         From humble beginnings to a trusted partner for many brands.
                       </p>
                     </div>
