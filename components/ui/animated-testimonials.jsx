@@ -49,25 +49,17 @@ export const AnimatedTestimonials = ({
                     rotate: randomRotateY(),
                   }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index)
-                      ? 40
-                      : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
-                  }}
+  opacity: isActive(index) ? 1 : 0.2,
+  scale: isActive(index) ? 1 : 0.75,
+  filter: isActive(index) ? "blur(0px)" : "blur(4px)",
+  rotate: isActive(index) ? 0 : randomRotateY() * 2,
+  zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
+}}
+transition={{
+  duration: 0.8,
+  ease: "easeInOut",
+}}
+
                   className="absolute inset-0 origin-bottom">
                   <img
                     src={testimonial.src}
