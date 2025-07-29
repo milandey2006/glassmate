@@ -38,7 +38,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { href: 'https://twitter.com/glassmatemedia', icon: <FaTwitter /> },
+    // { href: 'https://twitter.com/glassmatemedia', icon: <FaTwitter /> },
     { href: 'https://www.instagram.com/glassmatemedia/', icon: <FaInstagram /> },
     { href: 'https://www.linkedin.com/company/glassmatemedia/', icon: <FaLinkedinIn /> },
   ];
@@ -60,7 +60,7 @@ const Footer = () => {
                 info@glassmatemedia.com
               </a>
             </p>
-            <p className="mt-2 text-base text-gray-300">+91 80978 03740</p>
+            <p className="mt-2 text-base text-gray-300">+91 809 780 3740</p>
           </div>
 
           {/* Links Section */}
@@ -68,12 +68,12 @@ const Footer = () => {
             {footerSections.map((section) => (
               <div key={section.title}>
                 <h3 className="text-lg font-semibold leading-6">{section.title}</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-6 space-y-4 ">
                   {section.links.map((link) => (
-                    <li key={link.text}>
+                    <li key={link.text} className="text-base text-gray-300 hover:text-white hover:scale-105 transition-all duration-300">
                       <a 
                         href={link.href} 
-                        className="text-base text-gray-300 hover:text-white transition-colors duration-300"
+                        className="text-base text-gray-300 hover:text-white transition-colors duration-300 "
                       >
                         {link.text}
                       </a>

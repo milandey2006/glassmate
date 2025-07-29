@@ -142,7 +142,7 @@ export default function ContactComponent() {
                 <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-700">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm">+91 80978 03740</span>
+                <span className="text-sm">+91 809 780 3740</span>
               </div>
             </div>
           </div>

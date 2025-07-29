@@ -1,13 +1,9 @@
-// components/ResponsiveNavbar.js
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Briefcase, Mail, Settings } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, Mail, Video } from "lucide-react";
 import Image from "next/image";
-
-// Make sure your logo is in the 'public/assets/' directory
-import logo from '../public/assets/logo.png';
+import Link from "next/link"; // Add this import
 
 const ResponsiveNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +14,7 @@ const ResponsiveNavbar = () => {
       setHasScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Set initial state on mount
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -26,12 +22,12 @@ const ResponsiveNavbar = () => {
     { name: "Home", icon: Home, href: "/" },
     { name: "About", icon: User, href: "/about" },
     { name: "Services", icon: Briefcase, href: "/services" },
-    { name: "Portfolio", icon: Settings, href: "/portfolio" },
+    { name: "Portfolio", icon: Video, href: "/portfolio" },
     { name: "Contact", icon: Mail, href: "/contact" },
   ];
 
   const navbarClasses = hasScrolled
-    ? "bg-white/20 backdrop-blur-xl "
+    ? "bg-white/20 backdrop-blur-xl"
     : "bg-transparent";
   const textColorClasses = hasScrolled ? "text-gray-900" : "text-white";
   const hoverColorClass = hasScrolled ? "hover:text-blue-600" : "hover:text-gray-200";
@@ -48,44 +44,44 @@ const ResponsiveNavbar = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo and Company Name */}
-            <motion.a
-              href="/"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex-shrink-0"
-            >
-              <div className="flex items-center space-x-3">
-                <Image
-                  src={logo}
-                  alt="Glassmate Media Logo"
-                  width={70}
-                  height={20}
-                  priority
-                />
-                {/* ADDED: Company name styled to match the navbar's text color */}
-                <span className={`text-2xl font-bold  ${textColorClasses}`}>
-                  GlassMate Media
-                </span>
-              </div>
-            </motion.a>
+            <Link href="/">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex-shrink-0 cursor-pointer"
+              >
+                <div className="flex items-center space-x-3">
+                  <Image
+                    src="/assets/logo.png"
+                    alt="Glassmate Media Logo"
+                    width={70}
+                    height={20}
+                    priority
+                  />
+                  <span className={`text-2xl font-bold ${textColorClasses}`}>
+                    GlassMate Media
+                  </span>
+                </div>
+              </motion.div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-6">
                 {navItems.map((item, index) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.4 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${textColorClasses} ${hoverColorClass} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 flex items-center gap-2 group`}
-                  >
-                    <item.icon size={16} className="group-hover:rotate-12 transition-transform duration-300" />
-                    <span>{item.name}</span>
-                  </motion.a>
+                  <Link key={item.name} href={item.href}>
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.4 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`${textColorClasses} ${hoverColorClass} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 flex items-center gap-2 group cursor-pointer`}
+                    >
+                      <item.icon size={16} className="group-hover:rotate-12 transition-transform duration-300" />
+                      <span>{item.name}</span>
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -128,18 +124,18 @@ const ResponsiveNavbar = () => {
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {navItems.map((item, index) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.25 }}
-                    onClick={() => setIsOpen(false)}
-                    className="text-gray-900 hover:bg-blue-50 hover:text-blue-600 block px-3 py-3 rounded-md text-base font-medium transition-colors duration-300 flex items-center gap-4"
-                  >
-                    <item.icon size={20} />
-                    {item.name}
-                  </motion.a>
+                  <Link key={item.name} href={item.href}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.25 }}
+                      onClick={() => setIsOpen(false)}
+                      className="text-gray-900 hover:bg-blue-50 hover:text-blue-600 block px-3 py-3 rounded-md text-base font-medium transition-colors duration-300 flex items-center gap-4 cursor-pointer"
+                    >
+                      <item.icon size={20} />
+                      {item.name}
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </motion.div>

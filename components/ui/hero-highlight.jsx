@@ -8,6 +8,7 @@ import {
   useTransform,
   AnimatePresence 
 } from "motion/react";
+import Link from "next/link";
 
 // Utility function (replace with your actual cn function)
 const cn = (...classes) => classes.filter(Boolean).join(' ');
@@ -104,7 +105,7 @@ export const HeroHighlight = ({
   return (
     <motion.div
       className={cn(
-        "group relative flex h-[60rem] w-full items-center justify-center bg-gray-900 dark:bg-gray-900 overflow-hidden",
+        "group relative flex h-[50rem] w-full items-center justify-center bg-gray-900 dark:bg-gray-900 overflow-hidden",
         containerClassName
       )}
       onMouseMove={handleMouseMove}
@@ -307,9 +308,9 @@ export const Highlight = ({
 // Demo component to show the enhanced effects
 export const EnhancedHeroDemo = () => {
   return (
-    <HeroHighlight className="text-center">
+    <HeroHighlight className="text-center flex flex-col justify-center items-center -mt-12">
       <motion.h1 
-        className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+        className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 -mt-16 md:-mt-20"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -321,7 +322,7 @@ export const EnhancedHeroDemo = () => {
       </motion.h1>
       
       <motion.p 
-        className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+        className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto mt-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
@@ -329,8 +330,9 @@ export const EnhancedHeroDemo = () => {
          From Videos to Visual Identities, We Help You Capture Attention & Convert Customers.
       </motion.p>
       
+      <Link href="/services" passHref>
       <motion.button
-        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg"
+        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg mt-4 cursor-pointer hover:from-blue-600 hover:to-purple-600 transition-colors duration-300"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
@@ -342,8 +344,10 @@ export const EnhancedHeroDemo = () => {
       >
         Explore Services
       </motion.button>
+      </Link>
     </HeroHighlight>
   );
 };
+
 
 export default EnhancedHeroDemo;

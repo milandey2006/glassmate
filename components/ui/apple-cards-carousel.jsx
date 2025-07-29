@@ -75,61 +75,102 @@ export const Carousel = ({
   };
 
   return (
-    <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
-      <div className="relative w-full">
-        <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
-          ref={carouselRef}
-          onScroll={checkScrollability}>
-          <div
-            className={cn("absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l")}></div>
+  <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
+    <div className="relative w-full">
+      
+      {/* DESKTOP/TABLET - SIDE BUTTONS (Hidden on mobile) */}
+      <button
+        className={cn(
+          "hidden md:flex absolute left-2 top-1/2 z-40 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg transition-all duration-300 hover:bg-white hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed",
+          "md:left-4 md:h-14 md:w-14",
+          !canScrollLeft && "opacity-30 cursor-not-allowed"
+        )}
+        onClick={scrollLeft}
+        disabled={!canScrollLeft}
+      >
+        <IconArrowNarrowLeft className="h-5 w-5 text-gray-700 md:h-6 md:w-6" />
+      </button>
 
-          <div
-            className={cn(
-              "flex flex-row justify-start gap-4 pl-4",
-              // remove max-w-4xl if you want the carousel to span the full width of its container
-              "mx-auto max-w-7xl"
-            )}>
-            {items.map((item, index) => (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * index,
-                    ease: "easeOut",
-                    once: true,
-                  },
-                }}
-                key={"card" + index}
-                className="rounded-3xl last:pr-[5%] md:last:pr-[33%]">
-                {item}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="mr-10 flex justify-center gap-2">
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}>
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
-          </button>
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollRight}
-            disabled={!canScrollRight}>
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
-          </button>
+      <button
+        className={cn(
+          "hidden md:flex absolute right-2 top-1/2 z-40 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg transition-all duration-300 hover:bg-white hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed",
+          "md:right-4 md:h-14 md:w-14",
+          !canScrollRight && "opacity-30 cursor-not-allowed"
+        )}
+        onClick={scrollRight}
+        disabled={!canScrollRight}
+      >
+        <IconArrowNarrowRight className="h-5 w-5 text-gray-700 md:h-6 md:w-6" />
+      </button>
+
+      {/* CAROUSEL CONTAINER */}
+      <div
+        className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20 px-4 md:px-16 lg:px-20"
+        ref={carouselRef}
+        onScroll={checkScrollability}
+      >
+        {/* Your existing carousel content */}
+        <div className={cn("absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l")}></div>
+
+        <div
+          className={cn(
+            "flex flex-row justify-start gap-4 pl-4",
+            "mx-auto max-w-7xl"
+          )}
+        >
+          {items.map((item, index) => (
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.2 * index,
+                  ease: "easeOut",
+                  once: true,
+                },
+              }}
+              key={"card" + index}
+              className="rounded-3xl last:pr-[5%] md:last:pr-[33%]"
+            >
+              {item}
+            </motion.div>
+          ))}
         </div>
       </div>
-    </CarouselContext.Provider>
-  );
+
+      {/* MOBILE - NAVIGATION BUTTONS BELOW CARDS (Matching your image) */}
+      <div className="flex md:hidden justify-center items-center gap-4 pt-8 pb-4">
+        <button
+          className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 border border-gray-200 shadow-sm transition-all duration-300 hover:bg-gray-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed",
+            !canScrollLeft && "opacity-50 cursor-not-allowed"
+          )}
+          onClick={scrollLeft}
+          disabled={!canScrollLeft}
+        >
+          <IconArrowNarrowLeft className="h-6 w-6 text-gray-600" />
+        </button>
+        <button
+          className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 border border-gray-200 shadow-sm transition-all duration-300 hover:bg-gray-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed",
+            !canScrollRight && "opacity-50 cursor-not-allowed"
+          )}
+          onClick={scrollRight}
+          disabled={!canScrollRight}
+        >
+          <IconArrowNarrowRight className="h-6 w-6 text-gray-600" />
+        </button>
+      </div>
+      
+    </div>
+  </CarouselContext.Provider>
+);
+
 };
 
 export const Card = ({

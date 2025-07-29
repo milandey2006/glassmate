@@ -17,8 +17,8 @@ export default function Home() {
       </EnhancedHeroDemo>
       <ContainerScroll>
         <img
-          src="https://ui.aceternity.com/linear.webp"
-          alt="Description"
+          src="/homepage/collage.png"
+          alt="homepage collage"
           className="w-full h-full object-cover rounded-lg"
         />
       </ContainerScroll>

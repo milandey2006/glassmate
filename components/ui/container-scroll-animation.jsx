@@ -28,7 +28,9 @@ export const ContainerScroll = ({
   };
 
   // Change these lines in your current component:
-const rotate = useTransform(scrollYProgress, [0, 1], [0, 20]); // Reversed
+// This will tilt at the beginning (e.g. 20deg), be straight at the middle, and tilt back at the end (-20deg):
+const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 2]);
+ // Reversed
 const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions().reverse()); // Reversed  
 const translate = useTransform(scrollYProgress, [0, 1], [-100, 0]); // Reversed
 
