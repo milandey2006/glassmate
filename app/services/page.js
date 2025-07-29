@@ -39,7 +39,7 @@ const cardsData = [
     content: (
       <div>
         <p className="text-gray-800">
-          Whether you're an entrepreneur, a startup, or an established business,
+          Whether you&apos;re an entrepreneur, a startup, or an established business,
           we help shape your brand identity. From defining your voice to
           creating a strong digital presence, we craft strategies that make your
           brand visible, trusted, and memorable.
