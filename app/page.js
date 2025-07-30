@@ -6,6 +6,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import EnhancedHeroDemo from "@/components/ui/hero-highlight";
 import Image from "next/image";
 import TestimonialSection from "@/components/testimonials";
+import RotatingClients from "@/components/Clients";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         />
       </ContainerScroll>
       <GlassMateHero />
+      <RotatingClients />
       <TestimonialSection />
     </div>
   );

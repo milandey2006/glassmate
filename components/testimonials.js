@@ -45,7 +45,7 @@ const TestimonialCard = ({ testimonial }) => {
   return (
     <div className="flex-shrink-0 w-80 mx-4 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
       {/* Double Quotes Icon */}
-      <div className="text-4xl text-[#00D3F2] mb-4 font-serif">"</div>
+      <div className="text-4xl text-[#00D3F2] mb-4 font-serif">&quot;</div>
       
       {/* Review Text */}
       <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6 line-clamp-4">
