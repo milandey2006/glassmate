@@ -1,61 +1,119 @@
+"use client";
+import React from 'react';
+import { motion } from 'motion/react';
 
-import React from "react";
-import { AnimatedTestimonials } from "./ui/animated-testimonials";
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    designation: "Marketing Director, TechCorp",
+    review: "Outstanding creative work! Their team delivered exceptional branding solutions that transformed our company's image. The attention to detail and professionalism exceeded our expectations."
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    designation: "CEO, StartupVenture",
+    review: "Working with this agency was a game-changer for our business. Their strategic approach to digital marketing increased our online presence by 300%. Highly recommended!"
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    designation: "Brand Manager, Fashion House",
+    review: "The creative excellence they bring to every project is remarkable. Our social media engagement skyrocketed after implementing their content strategy. Truly professional team."
+  },
+  {
+    id: 4,
+    name: "David Thompson",
+    designation: "Founder, E-commerce Plus",
+    review: "Their e-commerce solutions helped us achieve 250% growth in sales. The website design is not only beautiful but also highly functional. Worth every investment."
+  },
+  {
+    id: 5,
+    name: "Lisa Park",
+    designation: "Operations Manager, HealthTech",
+    review: "From concept to execution, they delivered beyond our expectations. The video production quality is cinema-grade and perfectly captures our brand essence."
+  },
+  {
+    id: 6,
+    name: "James Wilson",
+    designation: "Creative Director, Agency Pro",
+    review: "Their consultation services provided invaluable insights that reshaped our entire marketing strategy. The ROI we've seen is exceptional. Professional and results-driven team."
+  }
+];
 
-const TestimonialSection = () => {
-  const testimonials = [
-    {
-      quote:
-        "I have worked with Sudarshan at LeapForWord. While I am a Content developer he is the designer of the same. He has good skill sets at Visualizations of E learning Products be it Books or Digital Audio Video Content. His ability to look through the final outcome on the drawing board itself makes the product designing journey Impactful. He is a great team player who never says No. Irrespective of how pressurizing the situation or deadline is !!! :) :)",
-      name: "Disha Thakkar",
-      designation: "Product Manager at LeapForWord",
-      src: "/testi/disha.jpeg",
-    },
-    {
-      quote:
-        "It has been a matter of pride and joy to see Sudarshan grow as a professional and as a person at LeapForWord, where he has demonstrated exceptional professional skills and commitment to our mission of enhancing English literacy. Over the years, he has built and led a media production team that has improved impact of our educational content. I was in awe of the media team's accomplishment when they delivered 50 episodes for Doordarshan &spos; s educational TV series within an astonishing 45-day timeframe—Sudarshan was leading from the front!",
-      name: "Mandar Gite",
-      designation: "Co-Founder @ LeapForWord",
-      src: "/testi/mandar.jpeg",
-    },
-    {
-      quote:
-        "I worked with Sudarshan at Leapforword, where he consistently impressed me with his creativity and dedication. He played a key role in producing amazing videos that captured our projects on the ground and significantly contributed to our digital content development efforts. His attention to detail and innovative ideas helped elevate our content, making it more engaging and impactful. I highly recommend Sudarshan for any project that requires a talented and driven professional.",
-      name: "Roopali Mohite ",
-      designation: "#CSR #Corporate Social Responsibility",
-      src: "/testi/Roopali.jpeg",
-    },
-    {
-      quote:
-        "Excellent Professional in Digital Marketing and Content Development. Highly dedicated and committed fellow. It was an enriching experience working with Sudharshan, though for a short period. Definitely he will be the best choice and will be a great asset, whichever company he works for.",
-      name: "SASTHA RAJAGOPAL",
-      designation: "Manager ~ Business Excellence",
-      src: "/testi/satsha.jpeg",
-    },
-    {
-      quote:
-        "I had the pleasure of working with Sudarshan for a year as part of his media team. His expertise in event management operations and media production was instrumental to our success. Sudarshan excelled in managing and organizing the WPC, a key competition held by our organization. His leadership and organizational skills ensured smooth execution of complex events. I highly recommend Sudarshan for roles requiring strong project management and media production capabilities.",
-      name: "Krit Gupta ",
-      designation: "Software Developer at Rutgers SAS-IT",
-      src: "/testi/krit.jpeg",
-    },
-  ];
+const TestimonialCard = ({ testimonial }) => {
   return (
-     <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-16">
-      <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-        Loved by Clients. Backed by Results.
-      </h2>
-      <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-        What our customers say about the collaboration
+    <div className="flex-shrink-0 w-80 mx-4 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
+      {/* Double Quotes Icon */}
+      <div className="text-4xl text-[#00D3F2] mb-4 font-serif">"</div>
+      
+      {/* Review Text */}
+      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6 line-clamp-4">
+        {testimonial.review}
       </p>
-      <div className="">
-        <AnimatedTestimonials testimonials={testimonials} />
+      
+      {/* Reviewer Info */}
+      <div className="border-t border-gray-200 dark:border-gray-600 pt-4">
+        <h4 className="font-semibold text-gray-900 dark:text-white text-base mb-1">
+          {testimonial.name}
+        </h4>
+        <p className="text-[#1595A8FF] dark:text-blue-400 text-sm font-medium">
+          {testimonial.designation}
+        </p>
       </div>
-      {" "}
     </div>
+  );
+};
+
+const MarqueeTestimonials = () => {
+  const [isPaused, setIsPaused] = React.useState(false);
+  const allTestimonials = [...testimonials, ...testimonials];
+
+  return (
+    <section className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+      <div className="container mx-auto px-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Loved by Clients.  <span className="text-[#14B8D1FF]">Backed by Results.</span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400">
+            What our customers say about the collaboration
+          </p>
+        </div>
+      </div>
+
+      {/* Marquee Container */}
+      <div 
+        className="relative"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Gradient Overlays */}
+        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+        
+        {/* Scrolling Container with Pause on Hover */}
+        <motion.div
+          className="flex"
+          animate={{
+            x: [-1600, 0]
+          }}
+          transition={{
+            duration: 40,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            animationPlayState: isPaused ? 'paused' : 'running'
+          }}
+        >
+          {allTestimonials.map((testimonial, index) => (
+            <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };
 
-export default TestimonialSection;
+export default MarqueeTestimonials;

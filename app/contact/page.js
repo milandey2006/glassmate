@@ -29,6 +29,7 @@ export default function ContactComponent() {
     "E-commerce Solutions",
     "UI/UX Design",
     "SEO Services",
+    "Others",
   ];
 
   const handleInputChange = (e) => {
@@ -136,7 +137,7 @@ export default function ContactComponent() {
                 <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-700">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span className="text-sm">info@glassmate.com</span>
+                <span className="text-sm">info@glassmatemedia.com</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 transition-colors cursor-pointer">
                 <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-700">

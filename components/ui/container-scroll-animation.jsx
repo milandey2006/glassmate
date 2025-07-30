@@ -24,25 +24,24 @@ export const ContainerScroll = ({
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
+    return isMobile ? [0.8, 1.0] : [1.05, 1];
   };
 
-  // Change these lines in your current component:
-// This will tilt at the beginning (e.g. 20deg), be straight at the middle, and tilt back at the end (-20deg):
-const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 2]);
- // Reversed
-const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions().reverse()); // Reversed  
-const translate = useTransform(scrollYProgress, [0, 1], [-100, 0]); // Reversed
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 2]);
+  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions().reverse());
+  const translate = useTransform(scrollYProgress, [0, 1], [-100, 0]);
 
   return (
     <div
-      className="h-[60rem] md:h-[40rem] flex items-center justify-center relative p-2 md:p-20"
-      ref={containerRef}>
+      className="h-[70vh] md:h-[40rem] flex items-center justify-center relative p-2 md:p-20"
+      ref={containerRef}
+    >
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="py-6 md:py-40 w-full relative"
         style={{
           perspective: "1000px",
-        }}>
+        }}
+      >
         <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
@@ -61,7 +60,8 @@ export const Header = ({
       style={{
         translateY: translate,
       }}
-      className="div max-w-5xl mx-auto text-center">
+      className="max-w-5xl mx-auto text-center mb-4 md:mb-0"
+    >
       {titleComponent}
     </motion.div>
   );
@@ -80,9 +80,9 @@ export const Card = ({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl">
-      <div
-        className=" h-full w-full  overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 ">
+      className="max-w-5xl -mt-4 md:-mt-12 mx-auto h-[55vh] w-[85vw] md:h-[40rem] md:w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl" // Key change here
+    >
+      <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4">
         {children}
       </div>
     </motion.div>
