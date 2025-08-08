@@ -1,18 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import ResponsiveNavbar from "@/components/Navbar";
 import LowtownFooter from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["Poppins"],
+const geistSans = Manrope({
+  variable: "--font-manrope-sans",
+  subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["Manrope"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["Manrope"],
+// });
 
 export const metadata = {
   title: "Glassmate Media",
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" webcrx="">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-100 font-poppins`}
+        className={`${geistSans.variable} antialiased bg-gray-900 text-gray-100 font-poppins`}
       >
         <ResponsiveNavbar />
         {children}
