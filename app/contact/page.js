@@ -50,10 +50,7 @@ export default function ContactComponent() {
       alert("Please enter a valid email address.");
       return false;
     }
-    if (!formData.agreeToTerms) {
-      alert("You must agree to the terms and conditions.");
-      return false;
-    }
+    // The validation check for `agreeToTerms` has been removed.
     return true;
   };
 
@@ -252,34 +249,12 @@ export default function ContactComponent() {
                 />
               </div>
 
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  id="agreeToTerms"
-                  name="agreeToTerms"
-                  checked={formData.agreeToTerms}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 mt-1 text-blue-500 bg-slate-900 border-slate-600 rounded focus:ring-blue-500 focus:ring-2"
-                  required
-                />
-                <label
-                  htmlFor="agreeToTerms"
-                  className="text-sm text-gray-400 leading-relaxed cursor-pointer"
-                >
-                  By clicking <b>Send Message</b>, you agree with our{" "}
-                  <a
-                    href="#"
-                    className="text-blue-400 hover:text-blue-300 underline"
-                  >
-                    Terms and Conditions
-                  </a>
-                </label>
-              </div>
-
+              {/* CHECKBOX AND LABEL HAVE BEEN REMOVED */}
+              
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 cursor-pointer"
               >
                 {loading ? "Sending..." : "Send Message →"}
               </button>

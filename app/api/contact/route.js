@@ -7,7 +7,8 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    const { name, email, phone, referral, message } = body;
+    // Corrected to use 'services' instead of 'referral'
+    const { name, email, phone, services, message } = body;
 
     const data = await resend.emails.send({
       from: "Your Brand <onboarding@resend.dev>",
@@ -18,7 +19,7 @@ export async function POST(req) {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        <p><strong>Referral:</strong> ${referral}</p>
+        <p><strong>Services:</strong> ${services}</p>
         <p><strong>Message:</strong> ${message || "No message"}</p>
       `,
     });

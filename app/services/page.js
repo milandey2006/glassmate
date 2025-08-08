@@ -323,12 +323,12 @@ const page = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" passHref>
-                <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105">
+                <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white cursor-pointer font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105">
                   Start Your Project
                 </button>
               </Link>
               <Link href="/portfolio" passHref>
-                <button className="px-8 py-4 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-all duration-300">
+                <button className="px-8 py-4 border border-white/20 text-white font-semibold rounded-lg cursor-pointer hover:bg-white/5 transition-all duration-300">
                   View Our Portfolio
                 </button>
               </Link>

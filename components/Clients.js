@@ -28,12 +28,14 @@ const ClientLogoMarquee = () => (
             {[...clientLogos, ...clientLogos].map((logo, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-md shadow-sm flex items-center justify-center w-[70px] h-[70px] mx-2 border border-gray-200"
+                // Changed from h-[70px] to h-[85px]
+                className="bg-white rounded-md shadow-sm flex items-center justify-center w-[95px] h-[95px] mx-2 border border-gray-200"
               >
                 <img
                   src={logo}
                   alt={`Client logo ${idx + 1}`}
-                  className="h-12 w-12 object-contain"
+                  // Changed from h-12 w-12 to h-16 w-16
+                  className="h-16 w-16 object-contain"
                   draggable="false"
                 />
               </div>
@@ -56,7 +58,8 @@ const ClientLogoMarquee = () => (
           }
           @media (max-width: 768px) {
             .marquee-track div {
-              width: 54px; height: 54px;
+              // Changed from width: 54px; height: 54px; to 60px
+              width: 60px; height: 60px;
             }
           }
         `}</style>
