@@ -6,12 +6,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["Poppins"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["Manrope"],
 });
 
 export const metadata = {
@@ -28,10 +28,10 @@ export default function RootLayout({ children }) {
         <ResponsiveNavbar />
         {children}
         <LowtownFooter />
-        <WhatsAppButton 
-        phoneNumber="+919987703344" // Replace with your actual number
-        message="Hello! I saw your website and I'm interested in your services. Can we chat?"
-      />
+        <WhatsAppButton
+          phoneNumber="+919987703344" // Replace with your actual number
+          message="Hello! I saw your website and I'm interested in your services. Can we chat?"
+        />
       </body>
     </html>
   );

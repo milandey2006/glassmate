@@ -27,7 +27,7 @@ const GlassMateHero = () => {
       <div className="relative z-10 container mx-auto px-8 py-20 max-w-7xl">
         {/* Who We Are Section */}
         <div className={`mb-20 transform transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <p className="text-gray-400 text-md font-mono mb-2 tracking-wider uppercase">
+          <p className="text-gray-400 text-md font-manrope mb-2 tracking-wider uppercase">
             Who are we
           </p>
           
@@ -39,14 +39,14 @@ const GlassMateHero = () => {
             
           </h1>
           
-          <p className="text-gray-400 text-lg font-mono max-w-2xl">
+          <p className="text-gray-400 text-lg font-Manrope max-w-2xl">
             GlassMate Media is not just a media agency were your strategic partner in storytelling and growth.
           </p>
         </div>
 
         {/* What We Do Section */}
         <div className={`mb-20 transform transition-all duration-1000 ease-out delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <p className="text-gray-400 text-sm font-mono mb-2 tracking-wider uppercase">
+          <p className="text-gray-400 text-sm font-Manrope mb-2 tracking-wider uppercase">
             What we do
           </p>
           
@@ -56,7 +56,7 @@ const GlassMateHero = () => {
             <span className="text-cyan-400">And Deliver in Conversions</span>
           </h2>
           
-          <p className="text-gray-400 text-lg font-mono max-w-2xl">
+          <p className="text-gray-400 text-lg font-Manrope max-w-2xl">
             We blend storytelling, technology, and strategy to create media that resonates, engages,
 
             <br />
@@ -66,7 +66,7 @@ const GlassMateHero = () => {
 
         {/* Why Choose Us Section */}
         <div className={`mb-20 transform transition-all duration-1000 ease-out delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <p className="text-gray-400 text-sm font-mono mb-2 tracking-wider uppercase">
+          <p className="text-gray-400 text-sm font-Manrope mb-2 tracking-wider uppercase">
             Why choose us
           </p>
           
@@ -76,7 +76,7 @@ const GlassMateHero = () => {
             We Leave a <span className="text-white">Dent</span>
           </h3>
           
-          <p className="text-gray-400 text-lg font-mono max-w-2xl mb-12">
+          <p className="text-gray-400 text-lg font-Manrope max-w-2xl mb-12">
             Because we go beyond content—we create experiences that drive impact.
           </p>
         </div>

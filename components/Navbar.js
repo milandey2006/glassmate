@@ -29,8 +29,8 @@ const ResponsiveNavbar = () => {
   const navbarClasses = hasScrolled
     ? "bg-white/20 backdrop-blur-xl"
     : "bg-transparent";
-  const textColorClasses = hasScrolled ? "text-gray-900" : "text-white";
-  const hoverColorClass = hasScrolled ? "hover:text-blue-600" : "hover:text-gray-200";
+  const textColorClasses = hasScrolled ? "text-white" : "text-white";
+  const hoverColorClass = hasScrolled ? "hover:text-blue-300" : "hover:text-gray-200";
 
   return (
     <>
