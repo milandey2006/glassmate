@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Heart, MessageCircle, Share, Bookmark, MoreHorizontal, ChevronLeft, ChevronRight, Calendar, Tag, ExternalLink } from "lucide-react";
-import Image from "next/image";
+
 
 const ResponsivePortfolioGrid = () => {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -292,7 +292,7 @@ const ResponsivePortfolioGrid = () => {
 
                             {/* Image Container */}
                             <div className="md:w-3/5 flex-shrink-0 bg-black flex items-center justify-center p-4 md:rounded-l-2xl">
-                                <Image
+                                <img
                                     src={project.src}
                                     alt={project.title}
                                     className="max-w-full max-h-[50vh] md:max-h-[85vh] object-contain rounded-lg"
@@ -447,7 +447,7 @@ const ResponsivePortfolioGrid = () => {
                                         className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 cursor-pointer"
                                         style={{ aspectRatio }}
                                     >
-                                        <Image
+                                        <img
                                             src={item.src}
                                             alt={item.title}
                                             className="w-full h-full object-cover"
@@ -528,7 +528,7 @@ const ResponsivePortfolioGrid = () => {
         >
             <div className={`relative ${item.height} bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-blue-500/20`}>
                 <div className="relative w-full h-full">
-                    <Image src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                    <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-100 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute top-0 left-0 right-0 p-4 transition-all duration-300 opacity-0 group-hover:opacity-100">
                         <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/20">
@@ -550,19 +550,19 @@ const ResponsivePortfolioGrid = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
             <div className="container mx-auto px-4 py-20">
-                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-16">
+                {/* <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-16">
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                         Portfolio
                     </h1>
                     <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                         Showcasing our creative excellence in digital media production and marketing campaigns Suggested Upgrade
                     </p>
-                </motion.div>
+                </motion.div> */}
 
                 {/* --- IMAGES SECTION --- */}
                 <div className="mb-20">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 mt-15">
                             Our Work Speaks Louder Than  <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Words</span>
                         </h2>
                         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
@@ -615,7 +615,7 @@ const ResponsivePortfolioGrid = () => {
                             <motion.div key={item.id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: index * 0.1 }} className="group cursor-pointer" onClick={() => openModal(item)}>
                                 <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105">
                                     <div className="relative h-48 bg-gray-700 overflow-hidden">
-                                        <Image src={item.thumbnail} alt={item.title} className="object-cover w-full h-full" />
+                                        <img src={item.thumbnail} alt={item.title} className="object-cover w-full h-full" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                         <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             <Play className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />

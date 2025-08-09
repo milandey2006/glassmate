@@ -10,6 +10,17 @@ const clientLogos = [
   "/clients/nihar.png",
   "/clients/streax.png",
   "/clients/sudlife.png",
+  "/clients/marico.png",
+  "/clients/star.png",
+  "/clients/grofo.png",
+  "/clients/vins.png",
+  "/clients/vista.png",
+  "/clients/chemflo.png",
+  "/clients/nature.png",
+  "/clients/science.png",
+  "/clients/truechem.png",
+  "/clients/jsa.png",
+  "/clients/truhaul.png",
 ];
 
 const ClientLogoMarquee = () => (

@@ -5,40 +5,58 @@ import { motion } from 'motion/react';
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    designation: "Marketing Director, TechCorp",
-    review: "Outstanding creative work! Their team delivered exceptional branding solutions that transformed our company's image. The attention to detail and professionalism exceeded our expectations."
+    name: "Bharati Mahimkar",
+    designation: "Director - Operations & Clinical, EAP-India",
+    review: "GlassMate Media truly understands our needs and delivers videos and creatives that ensure outstanding results. Their team&spos;s creativity and professionalism made it easy to bring our message to life through impactful videos and graphics. I'd recommend them to anyone looking to make a mark on social media"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    designation: "CEO, StartupVenture",
-    review: "Working with this agency was a game-changer for our business. Their strategic approach to digital marketing increased our online presence by 300%. Highly recommended!"
+    name: "Mandar Gite",
+    designation: "Co-Founder, LeapForWord",
+    review: "I've had the privilege of seeing Sudarshan lead impactful media projects with creativity, speed, and precision — including delivering 50 educational TV episodes for Doordarshan in just 45 days while at LeapForWord. His ability to manage teams, craft compelling content, and execute at scale is exceptional. Now, with GlassMate Media, he brings that same vision and dedication to help brands tell their stories with the same passion and excellence."
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    designation: "Brand Manager, Fashion House",
-    review: "The creative excellence they bring to every project is remarkable. Our social media engagement skyrocketed after implementing their content strategy. Truly professional team."
+    name: "Roopali Mohite",
+    designation: "Deputy Manager, TATA AutoComp Systems Ltd.",
+    review: "I had the opportunity to work with Sudarshan during his time at LeapForWord, where his creativity and dedication truly stood out. He played a key role in producing videos that captured our projects on the ground and significantly boosted our digital content efforts. Today, with GlassMate Media, Sudarshan brings that same level of attention to detail and innovative thinking — helping brands create engaging, impactful, and memorable media"
   },
   {
     id: 4,
-    name: "David Thompson",
-    designation: "Founder, E-commerce Plus",
-    review: "Their e-commerce solutions helped us achieve 250% growth in sales. The website design is not only beautiful but also highly functional. Worth every investment."
+    name: "Krit Gupta",
+    designation: "Software Developer, Rutgers SAS-IT",
+    review: "I had the pleasure of working with Sudarshan for a year as part of his media team. His expertise in event management and media production ensured the seamless execution of complex events. The leadership and organizational skills he demonstrated then are the same qualities he now channels into GlassMate Media — delivering projects with precision, creativity, and measurable impact."
   },
   {
     id: 5,
-    name: "Lisa Park",
-    designation: "Operations Manager, HealthTech",
-    review: "From concept to execution, they delivered beyond our expectations. The video production quality is cinema-grade and perfectly captures our brand essence."
+    name: "Disha Thakkar",
+    designation: "Product & Project Manager - LeapForWord",
+    review: "I worked with Sudarshan at LeapForWord, where his design vision brought our content to life. Whether it was books, digital audio, or video content, his ability to visualize the end product from the very start made the process impactful and efficient. His calm approach under pressure and willingness to go the extra mile stood out then — and those same qualities now define his work at GlassMate Media."
   },
   {
     id: 6,
-    name: "James Wilson",
-    designation: "Creative Director, Agency Pro",
-    review: "Their consultation services provided invaluable insights that reshaped our entire marketing strategy. The ROI we've seen is exceptional. Professional and results-driven team."
-  }
+    name: "Jaspreet Singh",
+    designation: "CSR Consultant",
+    review: "As a CSR Consultant, I often rely on strong visual storytelling and creative narratives to convey the real impact of the programs I evaluate. My collaboration with GlassMate Media has been nothing short of exceptional.A special mention goes to Sudarshan, whose creative insights have consistently elevated my CSR impact stories. His ability to translate complex project outcomes into engaging and emotionally resonant content has helped me communicate my client's work in a way that is both authentic and compelling. The attention to detail, innovative approach, and understanding of CSR nuances have made every project we've worked on together more impactful.I truly appreciate the professionalism and creativity that GlassMate Media brings to the table, and I look forward to continuing our association."
+  },
+  {
+    id: 7,
+    name: "Disha Thakkar",
+    designation: "Product & Project Manager - LeapForWord",
+    review: "I worked with Sudarshan at LeapForWord, where his design vision brought our content to life. Whether it was books, digital audio, or video content, his ability to visualize the end product from the very start made the process impactful and efficient. His calm approach under pressure and willingness to go the extra mile stood out then — and those same qualities now define his work at GlassMate Media."
+  },
+  {
+    id: 8,
+    name: "Ujjwal Bahal",
+    designation: "Founder - TrueChem & ChemFlow | Co-Founder - GroFo Foundation",
+    review: "Working with GlassMate Media has been a game-changer for our brands. Sudarshan and his team brought unmatched clarity to our brand guidelines and created pitch decks that not only looked stunning but communicated our story with precision. Their media strategy and consultation helped us position ourselves effectively in a competitive market, while their media production quality exceeded our expectations. GlassMate Media isn't just a service provider — they're a creative partner invested in our success"
+  },
+  {
+    id: 8,
+    name: "Dr. Ameya Ambulkar",
+    designation: "Professor | Speaker & Researcher | Entrepreneur",
+    review: "Working with GlassMate Media has been an excellent experience. They collaborated with me to create a detailed content strategy, bringing strong skills in video production, post-production, and a sharp creative eye. One of the highlights was how they took a complex campaign idea and broke it down into a clear, step-by-step execution plan- from scripting and storyboarding to final delivery. In another instance, their research-driven approach helped us identify the right hooks and formats that actually led to better engagement and conversions. Every project was handled with a clear focus on the outcome, and they consistently delivered exactly what was needed. I am very happy with their service and look forward to working with them again."
+  },
 ];
 
 const TestimonialCard = ({ testimonial }) => {
