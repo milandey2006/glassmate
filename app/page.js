@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import GlassMateHero from "@/components/About";
 import ResponsiveNavbar from "@/components/Navbar";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
@@ -14,14 +14,14 @@ export default function Home() {
       <Analytics />
 
       <EnhancedHeroDemo>
-        <div className="font-bold text-[50px]">We Dont Just Create Content — We Create Movements.</div>
+        <div className="font-bold text-[50px]">
+          We Dont Just Create Content — We Create Movements.
+        </div>
       </EnhancedHeroDemo>
-      <ContainerScroll>
-        <img
-          src="/homepage/collage.png"
-          alt="homepage collage"
-          className="w-full h-full object-cover rounded-lg"
-        />
+      <ContainerScroll
+        mobileImageSrc="/homepage/collage.png"
+        desktopImageSrc="/homepage/collage.png"
+      >
       </ContainerScroll>
       <GlassMateHero />
       <RotatingClients />

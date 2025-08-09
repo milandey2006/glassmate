@@ -74,10 +74,10 @@ const MarqueeTestimonials = () => {
       <div className="container mx-auto px-4 mb-16">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Loved by Clients.  <span className="text-[#14B8D1FF]">Backed by Results.</span>
+            Words That Keep  <span className="text-[#14B8D1FF]">Us Going.</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            What our customers say about the collaboration
+            Real Feedback. Real Results.
           </p>
         </div>
       </div>

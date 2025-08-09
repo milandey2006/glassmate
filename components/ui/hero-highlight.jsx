@@ -327,7 +327,7 @@ export const EnhancedHeroDemo = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-         From Videos to Visual Identities, We Help You Capture Attention & Convert Customers.
+         From Reels to Real Impact. We craft stories that captivate, convert, and leave a mark.
       </motion.p>
       
       <Link href="/services" passHref>
@@ -342,7 +342,7 @@ export const EnhancedHeroDemo = () => {
         }}
         whileTap={{ scale: 0.95 }}
       >
-        Explore Services
+        Let&apos;s Start Your Story
       </motion.button>
       </Link>
     </HeroHighlight>

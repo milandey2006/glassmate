@@ -243,6 +243,7 @@ export const Card = ({
                 {card.title}
               </motion.p>
               <div className="py-10">{card.content}</div>
+              <div>{card.offer}</div>
             </motion.div>
           </div>
         )}
@@ -274,6 +275,24 @@ export const Card = ({
     </>
   );
 };
+const CursorText = ({ text, position, visible }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{
+        opacity: visible ? 1 : 0,
+        scale: visible ? 1 : 0.8,
+        x: position.x + 15,
+        y: position.y + 15
+      }}
+      transition={{ duration: 0.2 }}
+      className="fixed z-[9999] pointer-events-none select-none text-sm font-medium bg-black text-white px-3 py-1 rounded-full shadow-lg"
+    >
+      {text}
+    </motion.div>
+  );
+};
+
 
 export const BlurImage = ({
   height,
@@ -301,3 +320,4 @@ export const BlurImage = ({
     />
   );
 };
+

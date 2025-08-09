@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const WhatsAppButton = ({ 
   phoneNumber = "+919987703344", // Replace with your actual WhatsApp number
-  message = "Hello! I'm interested in your services.", // Default message
+  message = "Hey! Just saw your website - liked the vibe!I&apos;m curious to know how GlassMate can help tell my brand&apos;s story. Shall we chat?", // Default message
   className = "" 
 }) => {
   const [isHovered, setIsHovered] = useState(false);

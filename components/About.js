@@ -34,13 +34,13 @@ const GlassMateHero = () => {
           <h1 className="text-5xl md:text-7xl lg:text-5xl font-black text-white leading-tight mb-12">
             We Dont Follow <span className="text-cyan-400">Trends</span>
             <br />
-            <span className="text-white">We Make Them Beg for a Retainer</span>
+            <span className="text-white">We Create Movements Brands Want In On.</span>
             <br />
             
           </h1>
           
           <p className="text-gray-400 text-lg font-Manrope max-w-2xl">
-            GlassMate Media is not just a media agency were your strategic partner in storytelling and growth.
+            More than a media agency, we&apos;re your strategic partner in clarity, creativity, and growth.
           </p>
         </div>
 
@@ -53,14 +53,11 @@ const GlassMateHero = () => {
           <h2 className="text-5xl md:text-7xl lg:text-5xl font-black text-white leading-tight mb-12">
             We <span className="text-white">Dream in Color</span>
             <br />
-            <span className="text-cyan-400">And Deliver in Conversions</span>
+            <span className="text-cyan-400">We Deliver in Metrics.</span>
           </h2>
           
           <p className="text-gray-400 text-lg font-Manrope max-w-2xl">
-            We blend storytelling, technology, and strategy to create media that resonates, engages,
-
-            <br />
-            and converts.
+            Every creative spark backed by strategy that performs.
           </p>
         </div>
 
@@ -73,11 +70,12 @@ const GlassMateHero = () => {
           <h3 className="text-4xl md:text-6xl lg:text-5xl font-black text-white leading-tight mb-12">
             We Don t Just  <span className="text-cyan-400">Impress</span>
             <br />
-            We Leave a <span className="text-white">Dent</span>
+            We Leave Brand Imprints That Last.
+
           </h3>
           
           <p className="text-gray-400 text-lg font-Manrope max-w-2xl mb-12">
-            Because we go beyond content—we create experiences that drive impact.
+            Because content is just content until it connects.
           </p>
         </div>
 
@@ -85,7 +83,7 @@ const GlassMateHero = () => {
         <div className={`transform transition-all duration-1000 ease-out delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="mb-16">
             <h4 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-8">
-              <span className="text-cyan-400">YOUR VISION,</span> OUR <span className="text-white">CREATIVITY,</span>
+              <span className="text-cyan-400">YOUR VISION,</span><br></br> OUR <span className="text-white">CREATIVITY,</span>
               <br />
               <span className="text-cyan-400">UNSTOPPABLE GROWTH!</span>
             </h4>

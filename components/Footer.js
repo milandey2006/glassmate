@@ -19,14 +19,14 @@ const Footer = () => {
         { text: 'Performance Marketing', href: '/services' },
       ],
     },
-    {
-      title: 'Resources',
-      links: [
-        { text: 'Blog', href: '/blog' },
-        { text: 'Case Studies', href: '/case-studies' },
-        { text: 'Newsletter', href: '/newsletter' },
-      ],
-    },
+    // {
+    //   title: 'Resources',
+    //   links: [
+    //     { text: 'Blog', href: '/blog' },
+    //     { text: 'Case Studies', href: '/case-studies' },
+    //     { text: 'Newsletter', href: '/newsletter' },
+    //   ],
+    // },
     {
       title: 'Company',
       links: [
@@ -50,10 +50,11 @@ const Footer = () => {
           {/* Logo and Contact Section */}
           <div className="md:col-span-4 lg:col-span-5">
             {/* Logo Placeholder */}
-            <div className="w-50 h-12 mb-6 flex items-center justify-center border-2 border-dashed border-gray-600">
+            <div className="w-50 h-12 mb-2 flex items-center justify-center border-2 border-dashed border-gray-600">
               <Image src={logo} alt="Glassmate Media Logo" width={40} height={12} className="object-contain" />
               <span className="font-bold text-xl text-gray-400"> GLASSMATE</span>
             </div>
+            <h3 className="text-lg font-bold mb- text-gray-500 leading-6">Media done right. Stories told well.</h3>
             <h3 className="text-lg font-semibold leading-6">Contact Us</h3>
             <p className="mt-4 text-base text-gray-300">
               <a href="mailto:hello@glassmatemedia.com" className="hover:text-white transition-colors duration-300">

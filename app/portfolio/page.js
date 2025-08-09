@@ -554,7 +554,7 @@ const ResponsivePortfolioGrid = () => {
                         Portfolio
                     </h1>
                     <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                        Showcasing our creative excellence in digital media production and marketing campaigns
+                        Showcasing our creative excellence in digital media production and marketing campaigns Suggested Upgrade
                     </p>
                 </motion.div>
 
@@ -562,10 +562,10 @@ const ResponsivePortfolioGrid = () => {
                 <div className="mb-20">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Creative <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Works</span>
+                            Our Work Speaks Louder Than  <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Words</span>
                         </h2>
                         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                            Explore our graphic design, branding, and visual identity projects
+                            From bold identities to award-winning campaigns, we craft stories that connect and deliver results.
                         </p>
                     </motion.div>
 
@@ -643,8 +643,8 @@ const ResponsivePortfolioGrid = () => {
 
                 {/* --- CALL TO ACTION --- */}
                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-center">
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Ready to Start Your Project?</h2>
-                    <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">Let&apos;s collaborate to create something amazing for your brand</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Your Story Deserves to Be Seen</h2>
+                    <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">Whether it&apos;s a fresh brand identity, a high-impact campaign, or a viral video let&apos;s make it unforgettable together.CTA Button: Book a Free Creative Consultation</p>
                     <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full cursor-pointer transition-all duration-300 transform hover:scale-105 shadow-lg">
                         Get In Touch
                     </button>

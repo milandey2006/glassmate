@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
         {children}
         <LowtownFooter />
         <WhatsAppButton
-          phoneNumber="+919987703344" // Replace with your actual number
-          message="Hello! I saw your website and I'm interested in your services. Can we chat?"
+          phoneNumber="+918097803740" // Replace with your actual number
+          message="Hey! Just saw your website liked the vibe!I&apos;m curious to know how GlassMate can help tell my brand&apos;s story. Shall we chat?"
         />
       </body>
     </html>

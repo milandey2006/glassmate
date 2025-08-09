@@ -63,10 +63,10 @@ export default function ContactComponent() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -80,7 +80,7 @@ export default function ContactComponent() {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         // Reset form after successful submit
         setFormData({
           name: "",
@@ -91,12 +91,12 @@ export default function ContactComponent() {
           agreeToTerms: false,
         });
       } else {
-        console.error('API Error:', result.error);
-        setSubmitStatus('error');
+        console.error("API Error:", result.error);
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error('Network Error:', error);
-      setSubmitStatus('error');
+      console.error("Network Error:", error);
+      setSubmitStatus("error");
     } finally {
       setLoading(false);
     }
@@ -116,7 +116,7 @@ export default function ContactComponent() {
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-              Speak with a{" "}
+              Talk to a{" "}
               <span className="text-blue-400 italic font-light">
                 Creative Expert
               </span>
@@ -124,8 +124,9 @@ export default function ContactComponent() {
             </h1>
 
             <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-              When you book a meeting with us, you&apos;ll talk directly to a
-              creative strategist — not a sales rep.
+              When you connect with GlassMate, you speak directly with a
+              creative strategist who understands your vision — no pushy sales
+              talk, just honest ideas to make your brand shine.
             </p>
 
             {/* CONTACT INFO */}
@@ -153,18 +154,22 @@ export default function ContactComponent() {
             >
               <h2 className="text-3xl font-bold mb-8 text-center">
                 Get in touch
+                <p className="text-gray-400 text-sm font-thin mt-2">
+                  Got a project or story? Let's bring it to life. Fill the form we'll reply within 24 business hours with ideas, not just answers
+                </p>
               </h2>
 
               {/* Status Messages */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className="bg-green-500/20 border border-green-500/30 text-green-200 px-4 py-3 rounded-lg">
                   Message sent successfully! We&apos;ll get back to you soon.
                 </div>
               )}
 
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className="bg-red-500/20 border border-red-500/30 text-red-200 px-4 py-3 rounded-lg">
-                  Failed to send message. Please try again or contact us directly.
+                  Failed to send message. Please try again or contact us
+                  directly.
                 </div>
               )}
 
@@ -244,13 +249,13 @@ export default function ContactComponent() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  placeholder="Tell us about your project..."
+                  placeholder="Share your idea, goals, or any details you think we should know... "
                   className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                 />
               </div>
 
               {/* CHECKBOX AND LABEL HAVE BEEN REMOVED */}
-              
+
               <button
                 type="submit"
                 disabled={loading}
