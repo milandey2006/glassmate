@@ -114,7 +114,7 @@ const cardsData = [
   },
   {
     title: "Social Media Strategy & Management",
-    category: "We don&apos;t just scroll with trends — we steer the conversation.",
+    category: "We don't just scroll with trends — we steer the conversation.",
     src: "/services/smma.jpg",
     content: (
       <div>
@@ -169,7 +169,7 @@ const cardsData = [
     content: (
       <div>
         <p className="text-gray-800">
-          We capture stories, not just images. Whether it&&apos;s a corporate shoot, product showcase, or live event, we bring your brand to life through compelling visual documentation.
+          We capture stories, not just images. Whether it&apos;s a corporate shoot, product showcase, or live event, we bring your brand to life through compelling visual documentation.
         </p>
       </div>
     ),

@@ -188,7 +188,7 @@ export default function ContactComponent() {
 
               {submitStatus === "success" && (
                 <div className="bg-green-500/20 border border-green-500/30 text-green-200 px-4 py-3 rounded-lg">
-                  Message sent successfully! We&APOS;ll be in touch soon.
+                  Message sent successfully! We&apos;ll be in touch soon.
                 </div>
               )}
               {submitStatus === "error" && (
