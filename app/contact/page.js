@@ -153,7 +153,7 @@ export default function ContactComponent() {
             <form onSubmit={handleSubmit} noValidate className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-2xl space-y-4">
               <h2 className="text-3xl font-bold mb-6 text-center">Get in Touch</h2>
 
-              {submitStatus === "success" && <div className="bg-green-500/20 border border-green-500/30 text-green-200 px-4 py-3 rounded-lg">Message sent successfully! We'll be in touch soon.</div>}
+              {submitStatus === "success" && <div className="bg-green-500/20 border border-green-500/30 text-green-200 px-4 py-3 rounded-lg">Message sent successfully! We&APOS;ll be in touch soon.</div>}
               {submitStatus === "error" && <div className="bg-red-500/20 border border-red-500/30 text-red-200 px-4 py-3 rounded-lg">Failed to send message. Please try again later.</div>}
 
               {/* Name Field */}
