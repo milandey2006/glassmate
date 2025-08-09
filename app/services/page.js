@@ -68,7 +68,7 @@ const cardsData = [
     content: (
       <div>
         <p className="text-gray-800">
-          Whether you're a startup founder, solo creator, or growing business,
+          Whether you&apos;re a startup founder, solo creator, or growing business,
           we help shape your identity. From personal positioning to full-scale
           brand kits, we craft consistent, clear, and impactful branding that
           earns trust and drives growth.
@@ -169,7 +169,7 @@ const cardsData = [
     content: (
       <div>
         <p className="text-gray-800">
-          We capture stories, not just images. Whether it's a corporate shoot, product showcase, or live event, we bring your brand to life through compelling visual documentation.
+          We capture stories, not just images. Whether it&&apos;s a corporate shoot, product showcase, or live event, we bring your brand to life through compelling visual documentation.
         </p>
       </div>
     ),

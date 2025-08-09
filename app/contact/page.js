@@ -155,7 +155,7 @@ export default function ContactComponent() {
               <h2 className="text-3xl font-bold mb-8 text-center">
                 Get in touch
                 <p className="text-gray-400 text-sm font-thin mt-2">
-                  Got a project or story? Let's bring it to life. Fill the form we'll reply within 24 business hours with ideas, not just answers
+                  Got a project or story? Let&apos;s bring it to life. Fill the form we&apos;ll reply within 24 business hours with ideas, not just answers
                 </p>
               </h2>
 
