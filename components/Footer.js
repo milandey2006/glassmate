@@ -61,7 +61,8 @@ const Footer = () => {
                 info@glassmatemedia.com
               </a>
             </p>
-            <p className="mt-2 text-base text-gray-300">+91 809 780 3740</p>
+            <p className="mt-2 text-base text-gray-300">
+              <a href='tel:+918097803740'>+91 809 780 3740</a></p>
           </div>
 
           {/* Links Section */}
